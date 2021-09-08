@@ -6,7 +6,7 @@
   - ✅ android app 핵심 요소
   - ✅ broadcast receiver
   - ✅ service, start service, bound service, remote bond service
-  - lifecycle
+  - ✅ lifecycle
   - jetpack
   - viewmodel
   - livedata
