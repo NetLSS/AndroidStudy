@@ -10,7 +10,8 @@
   - ✅ jetpack
   - ✅ viewmodel
   - ✅ livedata
-  - lifecycle-aware
+  - ✅ lifecycle-aware
+  - ✅ notification
   - coroutine
   - ✅ activity saveinstance
   - recyclerView
