@@ -12,8 +12,8 @@
   - ✅ livedata
   - ✅ lifecycle-aware
   - ✅ notification
-  - coroutine
+  - ✅ coroutine
   - ✅ activity saveinstance
-  - recyclerView
-  - runtime permission
+  - ✅ recyclerView
+  - ✅ runtime permission
   - gradle
