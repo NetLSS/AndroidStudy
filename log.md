@@ -11,7 +11,7 @@
   - viewmodel
   - livedata
   - coroutine
-  - activity saveinstance
+  - ✅ activity saveinstance
   - recyclerView
   - runtime permission
   - gradle
