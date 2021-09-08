@@ -16,4 +16,4 @@
   - ✅ activity saveinstance
   - ✅ recyclerView
   - ✅ runtime permission
-  - gradle
+  - ✅ gradle
