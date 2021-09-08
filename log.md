@@ -7,9 +7,10 @@
   - ✅ broadcast receiver
   - ✅ service, start service, bound service, remote bond service
   - ✅ lifecycle
-  - jetpack
-  - viewmodel
-  - livedata
+  - ✅ jetpack
+  - ✅ viewmodel
+  - ✅ livedata
+  - lifecycle-aware
   - coroutine
   - ✅ activity saveinstance
   - recyclerView
