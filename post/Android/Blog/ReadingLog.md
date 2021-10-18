@@ -1,6 +1,8 @@
 <!-- 
 commit message
 Reading: 
+
+with @ebayKorea
 -->
 
 # Reading blog posts.
@@ -15,3 +17,5 @@ Reading:
 - 2021-10-18
   - [간결하고 효율적인 안드로이드 앱의 구조와 개발 전략](https://deview.kr/2014/session?seq=41)
   - [CI/CD란 무엇인가 (Feat. DevOps 엔지니어)](https://artist-developer.tistory.com/24)
+  - [신입 iOS 개발자의 "치약 프로젝트" 회고](https://dev.ebaykorea.com/15)
+  - [데이터 기반으로 지속적인 CI/CD 개선 환경 만들기](https://engineering.linecorp.com/ko/blog/build-a-continuous-cicd-environment-based-on-data/)
