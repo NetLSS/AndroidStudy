@@ -12,3 +12,6 @@ Reading:
 - 2021-10-07 : [(kotlin) 002. Kotlin Essentials for the Java Eyes](https://namhoon.kim/2021/10/04/kotlin/002/)
   - java 와 비교하며 편리한 코틀린을 다룸
 - 2021-10-07 : [(kotlin) 001. What is kotlin?](https://namhoon.kim/2021/10/03/kotlin/001/)
+- 2021-10-18
+  - [간결하고 효율적인 안드로이드 앱의 구조와 개발 전략](https://deview.kr/2014/session?seq=41)
+  - [CI/CD란 무엇인가 (Feat. DevOps 엔지니어)](https://artist-developer.tistory.com/24)
