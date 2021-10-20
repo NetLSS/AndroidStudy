@@ -27,3 +27,8 @@ with @ebayKorea
   - [Android Annotation 사용기](https://m.blog.naver.com/sangcomz/220392053495)
   - [viewpager1 기본 사용법](https://hijjang2.tistory.com/270)
   - [7.11 Git 도구 - 서브모듈](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EC%84%9C%EB%B8%8C%EB%AA%A8%EB%93%88)
+- 2021-10-20
+  - [안드로이드 11의 "패키지 공개 상태" 변경 사항 정리](https://tech.buzzvil.com/blog/tech-blog-package-visibility-in-android-11/)
+  - [나는 네가 왜 오류를 냈는지 알고 있다 — Crashlytics 기능, 어디까지 써봤니?](https://medium.com/prnd/%EB%82%98%EB%8A%94-%EB%84%A4%EA%B0%80-%EC%99%9C-%EC%98%A4%EB%A5%98%EB%A5%BC-%EB%83%88%EB%8A%94%EC%A7%80-%EC%95%8C%EA%B3%A0-%EC%9E%88%EB%8B%A4-crashlytics-%EA%B8%B0%EB%8A%A5-%EC%96%B4%EB%94%94%EA%B9%8C%EC%A7%80-%EC%8D%A8%EB%B4%A4%EB%8B%88-977357559684)
+  - [Android Google FCM(Fire Base) 클라우드 메시징 푸시 사용하기](https://web-inf.tistory.com/21)
+  - youtube [What's new in Jetpack Compose | Session](https://www.youtube.com/watch?v=7Mf2175h3RQ)
