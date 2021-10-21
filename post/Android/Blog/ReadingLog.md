@@ -1,6 +1,6 @@
 <!-- 
 commit message
-Reading: 
+Reading(blog): 
 
 with @ebayKorea
 -->
@@ -32,3 +32,8 @@ with @ebayKorea
   - [나는 네가 왜 오류를 냈는지 알고 있다 — Crashlytics 기능, 어디까지 써봤니?](https://medium.com/prnd/%EB%82%98%EB%8A%94-%EB%84%A4%EA%B0%80-%EC%99%9C-%EC%98%A4%EB%A5%98%EB%A5%BC-%EB%83%88%EB%8A%94%EC%A7%80-%EC%95%8C%EA%B3%A0-%EC%9E%88%EB%8B%A4-crashlytics-%EA%B8%B0%EB%8A%A5-%EC%96%B4%EB%94%94%EA%B9%8C%EC%A7%80-%EC%8D%A8%EB%B4%A4%EB%8B%88-977357559684)
   - [Android Google FCM(Fire Base) 클라우드 메시징 푸시 사용하기](https://web-inf.tistory.com/21)
   - youtube [What's new in Jetpack Compose | Session](https://www.youtube.com/watch?v=7Mf2175h3RQ)
+- 2021-10-21
+  - [[협업을 위한 git & GitHub] 2. 다른 사람의 원격 저장소로부터 협업하는 방법(Fork, clone, upstream, Pull Request, Merge & Pull)](https://deepinsight.tistory.com/167)
+  - [앱-스킴-실행을-위한-코드-추가하기](https://docs.tosspayments.com/guides/webview)
+  - [[Android] 웹뷰 ShouldOverrideUrlLoading을 이용하여 응용 프로그램이 제어할 수 있는 기회를 처리 방법](https://helloit.tistory.com/304)
+  - [Android - Uri, Scheme, SSP(Scheme Specific Part) 정리](https://codechacha.com/ko/android-uri-ssp/)
