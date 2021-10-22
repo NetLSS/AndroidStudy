@@ -37,3 +37,5 @@ with @ebayKorea
   - [앱-스킴-실행을-위한-코드-추가하기](https://docs.tosspayments.com/guides/webview)
   - [[Android] 웹뷰 ShouldOverrideUrlLoading을 이용하여 응용 프로그램이 제어할 수 있는 기회를 처리 방법](https://helloit.tistory.com/304)
   - [Android - Uri, Scheme, SSP(Scheme Specific Part) 정리](https://codechacha.com/ko/android-uri-ssp/)
+- 2021-10-22
+  - [[Android] LeakCanary로 메모리릭 잡기](https://leveloper.tistory.com/197)
