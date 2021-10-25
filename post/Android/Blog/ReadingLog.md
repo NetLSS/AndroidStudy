@@ -39,3 +39,15 @@ with @ebayKorea
   - [Android - Uri, Scheme, SSP(Scheme Specific Part) 정리](https://codechacha.com/ko/android-uri-ssp/)
 - 2021-10-22
   - [[Android] LeakCanary로 메모리릭 잡기](https://leveloper.tistory.com/197)
+- 2021-10-25
+  - [Android 앱에서 Dagger 사용](https://developer.android.com/training/dependency-injection/dagger-android#kotlin)
+  - [Dagger 기본사항](https://developer.android.com/training/dependency-injection/dagger-basics#conclusion)
+
+
+
+
+알아보기
+
+Suppress("UNCHECKED_CAST")
+
+https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb
