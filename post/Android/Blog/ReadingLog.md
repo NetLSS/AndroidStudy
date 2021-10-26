@@ -42,12 +42,17 @@ with @ebayKorea
 - 2021-10-25
   - [Android 앱에서 Dagger 사용](https://developer.android.com/training/dependency-injection/dagger-android#kotlin)
   - [Dagger 기본사항](https://developer.android.com/training/dependency-injection/dagger-basics#conclusion)
-
-
-
+- 2021-10-26
+  - [Modern Android development with Kotlin Part 4](https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb)
+  - [[Dagger] Dagger step5 - Binds와 Multi binding](https://black-jin0427.tistory.com/244)
+  - [[Android] ContributesAndroidInjector란?](https://bb-library.tistory.com/228)
+  - [[Kotlin] @JvmSuppressWildCards 의미](https://jaejong.tistory.com/148)
+  - [[안드로이드 스튜디오] compileSdkVersion와 buildToolsVersion와 minSdkVersion의 차이](https://article2.tistory.com/573)
 
 알아보기
 
 Suppress("UNCHECKED_CAST")
 
 https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb
+
+
