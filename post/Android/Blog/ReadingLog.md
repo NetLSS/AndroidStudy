@@ -48,6 +48,9 @@ with @ebayKorea
   - [[Android] ContributesAndroidInjector란?](https://bb-library.tistory.com/228)
   - [[Kotlin] @JvmSuppressWildCards 의미](https://jaejong.tistory.com/148)
   - [[안드로이드 스튜디오] compileSdkVersion와 buildToolsVersion와 minSdkVersion의 차이](https://article2.tistory.com/573)
+- 2021-10-27
+  - [[android] intent scheme 이란 무엇인가](https://sonagiya.tistory.com/entry/intent-scheme)
+  - [play-policies 타임라인](https://developer.android.com/distribute/play-policies)
 
 알아보기
 
