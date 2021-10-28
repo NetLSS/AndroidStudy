@@ -51,6 +51,11 @@ with @ebayKorea
 - 2021-10-27
   - [[android] intent scheme 이란 무엇인가](https://sonagiya.tistory.com/entry/intent-scheme)
   - [play-policies 타임라인](https://developer.android.com/distribute/play-policies)
+- 2021-10-28
+  - [Android 11과 앱의 호환성 테스트](https://developer.android.com/about/versions/11/test-changes?hl=ko#add_content_observer_flags)
+  - [동작 변경사항: Android 11을 타겟팅하는 앱](https://developer.android.com/about/versions/11/behavior-changes-11)
+  - [URI_INTENT_SCHEME](https://velog.io/@jsw4215/URIINTENTSCHEME)
+    - "intent:" 로 시작하는 url 인 경우 ```Intent.parseUri(url, Intent.URI_INTENT_SCHEME);``` 로 처리
 
 알아보기
 
