@@ -56,11 +56,26 @@ with @ebayKorea
   - [동작 변경사항: Android 11을 타겟팅하는 앱](https://developer.android.com/about/versions/11/behavior-changes-11)
   - [URI_INTENT_SCHEME](https://velog.io/@jsw4215/URIINTENTSCHEME)
     - "intent:" 로 시작하는 url 인 경우 ```Intent.parseUri(url, Intent.URI_INTENT_SCHEME);``` 로 처리
+  - [7. rebase 로 병합하기](https://backlog.com/git-tutorial/kr/stepup/stepup2_8.html)
+- 2021-10-29
+  - [Gradle failed to restore: Unable to find method 'org.gradle.api.file.ProjectLayout.directoryProperty](https://stackoverflow.com/questions/63206719/gradle-failed-to-restore-unable-to-find-method-org-gradle-api-file-projectlayo)
+  - [Android Studio 에서 Gradle Sync 시 오류 대처 방법](https://medium.com/@aropesoft/android-studio-%EC%97%90%EC%84%9C-gradle-sync-%EC%8B%9C-%EC%98%A4%EB%A5%98-%EB%8C%80%EC%B2%98-%EB%B0%A9%EB%B2%95-ffa1cb3a4dc6)
+  - [fabric 제거관련](https://ddolcat.tistory.com/466)
+  - [[Android/ 안드로이드] Exoplayer2 Error::Invoke-customs are only supported starting with Android O (--min-api 26)](https://lakue.tistory.com/30)
+  - [[안드로이드] Could not find androidx.lifecycle:lifecycle-extensions:2.3.0.](https://darkstart.tistory.com/269)
+  - [Minimum supported Gradle version is 6.1.1. Current version is 5.6.4](https://stackoverflow.com/questions/62147493/minimum-supported-gradle-version-is-6-1-1-current-version-is-5-6-4)
+  - [[안드로이드/Android] 자바 코틀린 혼용해서 사용하기](https://velog.io/@dustndus8/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9CAndroid-%EC%9E%90%EB%B0%94-%EC%BD%94%ED%8B%80%EB%A6%B0-%ED%98%BC%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
+  - [Could not get unknown property 'appCompatVersion' for root project 'Socialize' of type org.gradle.api.Project](https://stackoverflow.com/questions/65139402/could-not-get-unknown-property-appcompatversion-for-root-project-socialize-o)
+  - [](https://seastar105.tistory.com/87)
 
-알아보기
 
-Suppress("UNCHECKED_CAST")
 
-https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb
+
+
+# Lazy List
+
+
+- Suppress("UNCHECKED_CAST")
+  - [Modern Android development with Kotlin Part 4](https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb)
 
 
