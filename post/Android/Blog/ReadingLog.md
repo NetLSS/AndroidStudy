@@ -67,7 +67,8 @@ with @ebayKorea
   - [[안드로이드/Android] 자바 코틀린 혼용해서 사용하기](https://velog.io/@dustndus8/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9CAndroid-%EC%9E%90%EB%B0%94-%EC%BD%94%ED%8B%80%EB%A6%B0-%ED%98%BC%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
   - [Could not get unknown property 'appCompatVersion' for root project 'Socialize' of type org.gradle.api.Project](https://stackoverflow.com/questions/65139402/could-not-get-unknown-property-appcompatversion-for-root-project-socialize-o)
   - [](https://seastar105.tistory.com/87)
-
+- 2021-10-30
+  - [호주 "안드로이드, 구글 외 다른 검색 선택권 줘야"](https://zdnet.co.kr/view/?no=20211029224327)
 
 
 
