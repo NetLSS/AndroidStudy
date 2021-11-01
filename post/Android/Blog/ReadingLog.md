@@ -69,6 +69,8 @@ with @ebayKorea
   - [](https://seastar105.tistory.com/87)
 - 2021-10-30
   - [호주 "안드로이드, 구글 외 다른 검색 선택권 줘야"](https://zdnet.co.kr/view/?no=20211029224327)
+- 2021-11-01
+  - [[안드로이드] Scoped Storage(범위지정 저장소) 정리 (Legacy Storage와 차이점 정리)](https://youngest-programming.tistory.com/386)
 
 
 
