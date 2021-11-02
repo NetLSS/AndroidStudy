@@ -71,6 +71,13 @@ with @ebayKorea
   - [호주 "안드로이드, 구글 외 다른 검색 선택권 줘야"](https://zdnet.co.kr/view/?no=20211029224327)
 - 2021-11-01
   - [[안드로이드] Scoped Storage(범위지정 저장소) 정리 (Legacy Storage와 차이점 정리)](https://youngest-programming.tistory.com/386)
+- 2021-11-02
+  - [빠르게 배우는 안드로이드 — Intent -3 엑티비티간의 데이터 전송(기본데이터형) -2](https://medium.com/@henen/%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-intent-3-%EC%97%91%ED%8B%B0%EB%B9%84%ED%8B%B0%EA%B0%84%EC%9D%98-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%84%EC%86%A1-2-50e7456226fc)
+  - [[안드로이드] startActivityForResult ,onActivityResult 사용법](https://kiwinam.com/posts/23/android-start-activity-for-result/)
+  - [Volley 개요](https://developer.android.com/training/volley?hl=ko&authuser=1)
+    - [간단한 요청 보내기](https://developer.android.com/training/volley/simple?hl=ko&authuser=1)
+    - [RequestQueue 설정](https://developer.android.com/training/volley/requestqueue?hl=ko&authuser=1#kotlin)
+    - [](https://developer.android.com/training/volley/request?hl=ko&authuser=1)
 
 
 
