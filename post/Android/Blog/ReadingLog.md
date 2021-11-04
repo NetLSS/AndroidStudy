@@ -78,7 +78,16 @@ with @ebayKorea
     - [간단한 요청 보내기](https://developer.android.com/training/volley/simple?hl=ko&authuser=1)
     - [RequestQueue 설정](https://developer.android.com/training/volley/requestqueue?hl=ko&authuser=1#kotlin)
     - [](https://developer.android.com/training/volley/request?hl=ko&authuser=1)
-
+- 2021-11-03
+  - [mirror-git](https://joyful-development.tistory.com/entry/Git-fork%ED%95%9C-repository%EC%9D%98-%EC%BB%A4%EB%B0%8B%EC%9C%BC%EB%A1%9C%EB%8F%84-%EC%9E%94%EB%94%94%EB%A5%BC-%EC%8B%AC%EC%96%B4%EB%B3%B4%EC%9E%90-%EC%A0%80%EC%9E%A5%EC%86%8C%EC%9D%98-%EC%BB%A4%EB%B0%8B-%EA%B8%B0%EB%A1%9D%EA%B9%8C%EC%A7%80-%EC%A0%84%EB%B6%80-%EB%B3%B5%EC%82%AC%ED%95%B4%EC%98%A4%EA%B8%B0-%EC%9E%94%EB%94%94%EA%B0%80-%EC%95%88-%EC%8B%AC%EC%96%B4%EC%A7%88-%EB%95%8C)
+  - [Jetpack Compose Part 1 — Compose 소개 및 코드랩 따라하기](https://medium.com/android-deep-dive-study/jetpack-compose-part-1-compose-%EC%86%8C%EA%B0%9C-%EB%B0%8F-%EC%BD%94%EB%93%9C%EB%9E%A9-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0-35f7a0e6c581)
+  - [Jetpack Compose Part 2 — Preview / Layout / Decompile](https://medium.com/android-deep-dive-study/jetpack-compose-part-2-preview-layout-decompile-84fae294d458)
+  - [Jetpack Compose Part 3 — Retrospect](https://medium.com/android-deep-dive-study/jetpack-compose-part-3-retrospect-73f0769b2d82)
+- 2021-11-04
+  - [[Android] Application Class란? + 활용 - UroA 개발 블로그](https://uroa.tistory.com/43)
+  - [[Android] 어플리케이션 클래스 간단히 정리(Android Application Class)](https://superfelix.tistory.com/43)
+  - [메서드가 64K개를 초과하는 앱에 관해 멀티덱스 사용 설정](https://developer.android.com/studio/build/multidex?hl=ko)
+  - [Retrofit 과 Volley 에 대하여](https://yejinson97gaegul.tistory.com/82)
 
 
 
