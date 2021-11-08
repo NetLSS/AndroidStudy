@@ -90,6 +90,16 @@ with @ebayKorea
   - [Retrofit 과 Volley 에 대하여](https://yejinson97gaegul.tistory.com/82)
 - 2021-11-07
   - [Compose by example](https://www.youtube.com/watch?v=DDd6IOlH3io&t=41s)
+- 2021-11-08
+  - [[Android] 안드로이드 앱 종료](https://m.blog.naver.com/bb_/221936026706)
+  - [ActivityManager](https://kkangsnote.tistory.com/40)
+  - [[액티비티 실행 인텐트에 필요한 Flag 3가지 정리 ] FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP](https://onepinetwopine.tistory.com/327)
+  - [JAVA 비트연산자(|, &)와 논리연산자(||, &&)의 차이](https://it-jin-developer.tistory.com/9)
+  - [8. 웹뷰와 웹뷰에서 자바스크립트 사용하기](https://programmingfbf7290.tistory.com/entry/8-%EC%9B%B9%EB%B7%B0%EC%9B%B9%ED%81%AC%EB%A1%AC%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%EC%99%80-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
+    - setSaveFormData(boolean)는 자바 스크립트를 사용하여 문서를 저장하는 기능을 허용할 지 설정
+    - addJavascriptInterface() 메서드는 자바 스크립트 내부에서 안드로이드 클래스에 있는 메서드를 호출할 수 있도록 해준다.
+  - [[안드로이드] 웹 뷰가 웹 페이지 로딩 후 자바스크립트 코드 실행 예](https://m.blog.naver.com/netrance/220776189734)
+  - [코드랩](https://developer.android.com/codelabs/jetpack-compose-layouts?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-layouts#4)
 
 
 
