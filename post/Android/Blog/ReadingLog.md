@@ -100,8 +100,13 @@ with @ebayKorea
     - addJavascriptInterface() 메서드는 자바 스크립트 내부에서 안드로이드 클래스에 있는 메서드를 호출할 수 있도록 해준다.
   - [[안드로이드] 웹 뷰가 웹 페이지 로딩 후 자바스크립트 코드 실행 예](https://m.blog.naver.com/netrance/220776189734)
   - [코드랩](https://developer.android.com/codelabs/jetpack-compose-layouts?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-layouts#4)
-
-
+- 2021-11-09
+  - [안드로이드 이미지 -> 비트맵 디코딩](https://wiserloner.tistory.com/1393)
+  - [안드로이드 StrictMode 간단 정리](https://noota.tistory.com/entry/StrictMode-%EA%B0%84%EB%8B%A8-%EC%A0%95%EB%A6%AC)
+  - [Android StrictMode? 그게뭔데 ?](https://lagojin.github.io/strictmode/)
+  - [Android StrictMode로 Thread 감지하기](https://codetravel.tistory.com/27)
+  - [[java] Executors.newCachedThreadPool() 및 Executors.newFixedThreadPool()](http://daplus.net/java-executors-newcachedthreadpool-%EB%B0%8F-executors-newfixedthreadpool/)
+  - [큰 비트맵을 효율적으로 로드](https://developer.android.com/topic/performance/graphics/load-bitmap?hl=ko&authuser=1)
 
 # Lazy List
 
