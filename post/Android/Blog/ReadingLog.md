@@ -107,6 +107,14 @@ with @ebayKorea
   - [Android StrictMode로 Thread 감지하기](https://codetravel.tistory.com/27)
   - [[java] Executors.newCachedThreadPool() 및 Executors.newFixedThreadPool()](http://daplus.net/java-executors-newcachedthreadpool-%EB%B0%8F-executors-newfixedthreadpool/)
   - [큰 비트맵을 효율적으로 로드](https://developer.android.com/topic/performance/graphics/load-bitmap?hl=ko&authuser=1)
+- 2021-11-11
+  - [안드로이드 launch mode 선택](https://superwony.tistory.com/119)
+  - [[Kotlin] inline에 대하여 - inline, noinline, crossinline, reified](https://leveloper.tistory.com/171)
+  - [PublishedApi](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-published-api/)
+  - [(Kotlin) 함수를 인자로 넘겨서 실행](https://myung6024.tistory.com/92)
+  - [코틀린에서 reified는 왜 쓸까?](https://sungjk.github.io/2019/09/07/kotlin-reified.html)
+  - [Kotlin inlined extension property](https://coderedirect.com/questions/574465/kotlin-inlined-extension-property)
+  - [[Android] 안드로이드 - RecyclerView의 ViewType 구분하기](https://lktprogrammer.tistory.com/190)
 
 # Lazy List
 
