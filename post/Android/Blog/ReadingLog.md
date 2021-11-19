@@ -115,6 +115,18 @@ with @ebayKorea
   - [코틀린에서 reified는 왜 쓸까?](https://sungjk.github.io/2019/09/07/kotlin-reified.html)
   - [Kotlin inlined extension property](https://coderedirect.com/questions/574465/kotlin-inlined-extension-property)
   - [[Android] 안드로이드 - RecyclerView의 ViewType 구분하기](https://lktprogrammer.tistory.com/190)
+- 2021-11-15
+  - [[Android] 환경설정 프래그먼트 / PreferenceFragmentCompat](https://dayglo.tistory.com/97)
+  - [components-and-attributes](https://developer.android.com/guide/topics/ui/settings/components-and-attributes?hl=ko)
+  - [](https://stackoverflow.com/questions/69955145/can-i-make-several-check-boxes-in-one-setting-on-the-preference-screen?noredirect=1#comment123660589_69955145)
+  - [설정 디자인 가이드 원칙](https://source.android.com/devices/tech/settings/settings-guidelines?hl=ko#design_principles)
+  - [Shared Preference for Android learning](https://www.programmerall.com/article/7671740728/)
+  - [Settings ios](https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/settings/)
+- 2021-11-16
+  - [[Android] ViewTreeObserver란? - View가 그려지는 시점 알아내기](https://leveloper.tistory.com/167)
+  - [콘텐츠 라벨](https://support.google.com/accessibility/android/answer/7158690?hl=ko)
+- 2021-11-19
+  - [Transformations로 LiveData 변형하기](https://wooooooak.github.io/android/2019/07/13/liveData%EB%B3%80%ED%98%95%ED%95%98%EA%B8%B0/)
 
 # Lazy List
 
