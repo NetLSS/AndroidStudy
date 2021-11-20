@@ -127,11 +127,12 @@ with @ebayKorea
   - [콘텐츠 라벨](https://support.google.com/accessibility/android/answer/7158690?hl=ko)
 - 2021-11-19
   - [Transformations로 LiveData 변형하기](https://wooooooak.github.io/android/2019/07/13/liveData%EB%B3%80%ED%98%95%ED%95%98%EA%B8%B0/)
+- 2021-11-21
+  - [[Android] Web Browser에서 DeepLink로 앱 실행하기](https://jkroh.tistory.com/20)
 
 # Lazy List
 
 
 - Suppress("UNCHECKED_CAST")
   - [Modern Android development with Kotlin Part 4](https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb)
-
 
