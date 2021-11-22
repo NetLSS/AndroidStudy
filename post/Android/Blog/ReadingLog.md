@@ -129,6 +129,8 @@ with @ebayKorea
   - [Transformations로 LiveData 변형하기](https://wooooooak.github.io/android/2019/07/13/liveData%EB%B3%80%ED%98%95%ED%95%98%EA%B8%B0/)
 - 2021-11-21
   - [[Android] Web Browser에서 DeepLink로 앱 실행하기](https://jkroh.tistory.com/20)
+- 2021-11-22
+  - [Android. kotlin의 enum 어디까지 할 수 있을까?](https://mrgamza.tistory.com/628)
 
 # Lazy List
 
