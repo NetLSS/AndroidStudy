@@ -131,7 +131,12 @@ with @ebayKorea
   - [[Android] Web Browser에서 DeepLink로 앱 실행하기](https://jkroh.tistory.com/20)
 - 2021-11-22
   - [Android. kotlin의 enum 어디까지 할 수 있을까?](https://mrgamza.tistory.com/628)
-
+- 2021-11-23
+  - [안드로이드 앱 스크린샷 캡쳐 방지코드](https://charging.tistory.com/141)
+  - [[OS] 프로세스와 스레드의 차이](https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html)
+  - [1. 스레드(Thread), 그리고 프로그램(Program)과 프로세스(Process).](https://recipes4dev.tistory.com/143)
+- 2021-11-25
+  - [Android 12 베타 2.1](https://developer.android.com/about/versions/12/release-notes?hl=ko#ki-studio-tools-beta2)
 # Lazy List
 
 
