@@ -137,6 +137,8 @@ with @ebayKorea
   - [1. 스레드(Thread), 그리고 프로그램(Program)과 프로세스(Process).](https://recipes4dev.tistory.com/143)
 - 2021-11-25
   - [Android 12 베타 2.1](https://developer.android.com/about/versions/12/release-notes?hl=ko#ki-studio-tools-beta2)
+- 2021-12-02
+  - [How to reliably sideload the latest Google apps on Android 11](https://www.androidpolice.com/2021/02/10/how-to-reliably-sideload-the-latest-google-apps-on-android-11/)
 # Lazy List
 
 
