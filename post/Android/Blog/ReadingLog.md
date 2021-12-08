@@ -139,6 +139,9 @@ with @ebayKorea
   - [Android 12 베타 2.1](https://developer.android.com/about/versions/12/release-notes?hl=ko#ki-studio-tools-beta2)
 - 2021-12-02
   - [How to reliably sideload the latest Google apps on Android 11](https://www.androidpolice.com/2021/02/10/how-to-reliably-sideload-the-latest-google-apps-on-android-11/)
+- 2021-12-08
+  - [Rounded corner for textview in android](https://stackoverflow.com/questions/18781902/rounded-corner-for-textview-in-android)
+  - [how-to-make-a-background-20-transparent-on-android](https://stackoverflow.com/questions/11285961/how-to-make-a-background-20-transparent-on-android)
 # Lazy List
 
 
