@@ -146,6 +146,10 @@ with @ebayKorea
   - [TextView 글자수 초과시 말줄임 (...) 표시](https://jhshjs.tistory.com/27)
 - 2021-12-14
   - [[안드로이드] dp, dip, sp, px의 차이](https://debugdaldal.tistory.com/109)
+- 2021-12-15
+  - [Android databinding set padding if value is true](https://stackoverflow.com/questions/37487400/android-databinding-set-padding-if-value-is-true)
+  - [android databinding using "&&" logical operator](https://stackoverflow.com/questions/37152824/android-databinding-using-logical-operator)
+  - [Gitmoji 사용하기](https://treasurebear.tistory.com/70)
 # Lazy List
 
 
