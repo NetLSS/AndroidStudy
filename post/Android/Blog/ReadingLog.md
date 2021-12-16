@@ -150,6 +150,12 @@ with @ebayKorea
   - [Android databinding set padding if value is true](https://stackoverflow.com/questions/37487400/android-databinding-set-padding-if-value-is-true)
   - [android databinding using "&&" logical operator](https://stackoverflow.com/questions/37152824/android-databinding-using-logical-operator)
   - [Gitmoji 사용하기](https://treasurebear.tistory.com/70)
+- 2021-12-15
+  - [[DataBinding/LiveData] 안드로이드 DataBinding과 LiveData 같이 사용하기](https://dev-imaec.tistory.com/40)
+- 2021-12-16
+  - [Github PR 작업중이라고 표시하기](https://genius-kim-1047.tistory.com/56)
+  - [Git 여러가지 실수에 대처하는 방법](https://imcreator.tistory.com/167)
+  - [[Kotlin] 코틀린 클래스, 인터페이스](https://tourspace.tistory.com/106)
 # Lazy List
 
 
