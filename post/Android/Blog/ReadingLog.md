@@ -78,14 +78,89 @@ with @ebayKorea
     - [간단한 요청 보내기](https://developer.android.com/training/volley/simple?hl=ko&authuser=1)
     - [RequestQueue 설정](https://developer.android.com/training/volley/requestqueue?hl=ko&authuser=1#kotlin)
     - [](https://developer.android.com/training/volley/request?hl=ko&authuser=1)
-
-
-
-
+- 2021-11-03
+  - [mirror-git](https://joyful-development.tistory.com/entry/Git-fork%ED%95%9C-repository%EC%9D%98-%EC%BB%A4%EB%B0%8B%EC%9C%BC%EB%A1%9C%EB%8F%84-%EC%9E%94%EB%94%94%EB%A5%BC-%EC%8B%AC%EC%96%B4%EB%B3%B4%EC%9E%90-%EC%A0%80%EC%9E%A5%EC%86%8C%EC%9D%98-%EC%BB%A4%EB%B0%8B-%EA%B8%B0%EB%A1%9D%EA%B9%8C%EC%A7%80-%EC%A0%84%EB%B6%80-%EB%B3%B5%EC%82%AC%ED%95%B4%EC%98%A4%EA%B8%B0-%EC%9E%94%EB%94%94%EA%B0%80-%EC%95%88-%EC%8B%AC%EC%96%B4%EC%A7%88-%EB%95%8C)
+  - [Jetpack Compose Part 1 — Compose 소개 및 코드랩 따라하기](https://medium.com/android-deep-dive-study/jetpack-compose-part-1-compose-%EC%86%8C%EA%B0%9C-%EB%B0%8F-%EC%BD%94%EB%93%9C%EB%9E%A9-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0-35f7a0e6c581)
+  - [Jetpack Compose Part 2 — Preview / Layout / Decompile](https://medium.com/android-deep-dive-study/jetpack-compose-part-2-preview-layout-decompile-84fae294d458)
+  - [Jetpack Compose Part 3 — Retrospect](https://medium.com/android-deep-dive-study/jetpack-compose-part-3-retrospect-73f0769b2d82)
+- 2021-11-04
+  - [[Android] Application Class란? + 활용 - UroA 개발 블로그](https://uroa.tistory.com/43)
+  - [[Android] 어플리케이션 클래스 간단히 정리(Android Application Class)](https://superfelix.tistory.com/43)
+  - [메서드가 64K개를 초과하는 앱에 관해 멀티덱스 사용 설정](https://developer.android.com/studio/build/multidex?hl=ko)
+  - [Retrofit 과 Volley 에 대하여](https://yejinson97gaegul.tistory.com/82)
+- 2021-11-07
+  - [Compose by example](https://www.youtube.com/watch?v=DDd6IOlH3io&t=41s)
+- 2021-11-08
+  - [[Android] 안드로이드 앱 종료](https://m.blog.naver.com/bb_/221936026706)
+  - [ActivityManager](https://kkangsnote.tistory.com/40)
+  - [[액티비티 실행 인텐트에 필요한 Flag 3가지 정리 ] FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP](https://onepinetwopine.tistory.com/327)
+  - [JAVA 비트연산자(|, &)와 논리연산자(||, &&)의 차이](https://it-jin-developer.tistory.com/9)
+  - [8. 웹뷰와 웹뷰에서 자바스크립트 사용하기](https://programmingfbf7290.tistory.com/entry/8-%EC%9B%B9%EB%B7%B0%EC%9B%B9%ED%81%AC%EB%A1%AC%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%EC%99%80-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
+    - setSaveFormData(boolean)는 자바 스크립트를 사용하여 문서를 저장하는 기능을 허용할 지 설정
+    - addJavascriptInterface() 메서드는 자바 스크립트 내부에서 안드로이드 클래스에 있는 메서드를 호출할 수 있도록 해준다.
+  - [[안드로이드] 웹 뷰가 웹 페이지 로딩 후 자바스크립트 코드 실행 예](https://m.blog.naver.com/netrance/220776189734)
+  - [코드랩](https://developer.android.com/codelabs/jetpack-compose-layouts?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-layouts#4)
+- 2021-11-09
+  - [안드로이드 이미지 -> 비트맵 디코딩](https://wiserloner.tistory.com/1393)
+  - [안드로이드 StrictMode 간단 정리](https://noota.tistory.com/entry/StrictMode-%EA%B0%84%EB%8B%A8-%EC%A0%95%EB%A6%AC)
+  - [Android StrictMode? 그게뭔데 ?](https://lagojin.github.io/strictmode/)
+  - [Android StrictMode로 Thread 감지하기](https://codetravel.tistory.com/27)
+  - [[java] Executors.newCachedThreadPool() 및 Executors.newFixedThreadPool()](http://daplus.net/java-executors-newcachedthreadpool-%EB%B0%8F-executors-newfixedthreadpool/)
+  - [큰 비트맵을 효율적으로 로드](https://developer.android.com/topic/performance/graphics/load-bitmap?hl=ko&authuser=1)
+- 2021-11-11
+  - [안드로이드 launch mode 선택](https://superwony.tistory.com/119)
+  - [[Kotlin] inline에 대하여 - inline, noinline, crossinline, reified](https://leveloper.tistory.com/171)
+  - [PublishedApi](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-published-api/)
+  - [(Kotlin) 함수를 인자로 넘겨서 실행](https://myung6024.tistory.com/92)
+  - [코틀린에서 reified는 왜 쓸까?](https://sungjk.github.io/2019/09/07/kotlin-reified.html)
+  - [Kotlin inlined extension property](https://coderedirect.com/questions/574465/kotlin-inlined-extension-property)
+  - [[Android] 안드로이드 - RecyclerView의 ViewType 구분하기](https://lktprogrammer.tistory.com/190)
+- 2021-11-15
+  - [[Android] 환경설정 프래그먼트 / PreferenceFragmentCompat](https://dayglo.tistory.com/97)
+  - [components-and-attributes](https://developer.android.com/guide/topics/ui/settings/components-and-attributes?hl=ko)
+  - [](https://stackoverflow.com/questions/69955145/can-i-make-several-check-boxes-in-one-setting-on-the-preference-screen?noredirect=1#comment123660589_69955145)
+  - [설정 디자인 가이드 원칙](https://source.android.com/devices/tech/settings/settings-guidelines?hl=ko#design_principles)
+  - [Shared Preference for Android learning](https://www.programmerall.com/article/7671740728/)
+  - [Settings ios](https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/settings/)
+- 2021-11-16
+  - [[Android] ViewTreeObserver란? - View가 그려지는 시점 알아내기](https://leveloper.tistory.com/167)
+  - [콘텐츠 라벨](https://support.google.com/accessibility/android/answer/7158690?hl=ko)
+- 2021-11-19
+  - [Transformations로 LiveData 변형하기](https://wooooooak.github.io/android/2019/07/13/liveData%EB%B3%80%ED%98%95%ED%95%98%EA%B8%B0/)
+- 2021-11-21
+  - [[Android] Web Browser에서 DeepLink로 앱 실행하기](https://jkroh.tistory.com/20)
+- 2021-11-22
+  - [Android. kotlin의 enum 어디까지 할 수 있을까?](https://mrgamza.tistory.com/628)
+- 2021-11-23
+  - [안드로이드 앱 스크린샷 캡쳐 방지코드](https://charging.tistory.com/141)
+  - [[OS] 프로세스와 스레드의 차이](https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html)
+  - [1. 스레드(Thread), 그리고 프로그램(Program)과 프로세스(Process).](https://recipes4dev.tistory.com/143)
+- 2021-11-25
+  - [Android 12 베타 2.1](https://developer.android.com/about/versions/12/release-notes?hl=ko#ki-studio-tools-beta2)
+- 2021-12-02
+  - [How to reliably sideload the latest Google apps on Android 11](https://www.androidpolice.com/2021/02/10/how-to-reliably-sideload-the-latest-google-apps-on-android-11/)
+- 2021-12-08
+  - [Rounded corner for textview in android](https://stackoverflow.com/questions/18781902/rounded-corner-for-textview-in-android)
+  - [how-to-make-a-background-20-transparent-on-android](https://stackoverflow.com/questions/11285961/how-to-make-a-background-20-transparent-on-android)
+- 2021-12-13
+  - [TextView 글자수 초과시 말줄임 (...) 표시](https://jhshjs.tistory.com/27)
+- 2021-12-14
+  - [[안드로이드] dp, dip, sp, px의 차이](https://debugdaldal.tistory.com/109)
+- 2021-12-15
+  - [Android databinding set padding if value is true](https://stackoverflow.com/questions/37487400/android-databinding-set-padding-if-value-is-true)
+  - [android databinding using "&&" logical operator](https://stackoverflow.com/questions/37152824/android-databinding-using-logical-operator)
+  - [Gitmoji 사용하기](https://treasurebear.tistory.com/70)
+- 2021-12-15
+  - [[DataBinding/LiveData] 안드로이드 DataBinding과 LiveData 같이 사용하기](https://dev-imaec.tistory.com/40)
+- 2021-12-16
+  - [Github PR 작업중이라고 표시하기](https://genius-kim-1047.tistory.com/56)
+  - [Git 여러가지 실수에 대처하는 방법](https://imcreator.tistory.com/167)
+  - [[Kotlin] 코틀린 클래스, 인터페이스](https://tourspace.tistory.com/106)
+- 2021-12-17
+  - [[Kotlin] 코루틴 Coroutine - async와 await, LifecycleScope과 ViewModelScope 사용법 및 사용예제- 4편](https://underdog11.tistory.com/entry/Kotlin-%EC%BD%94%EB%A3%A8%ED%8B%B4-Coroutine-async%EA%B3%BC-await-LifecycleScope%EA%B3%BC-ViewModelScope-3%ED%8E%B8)
 # Lazy List
 
 
 - Suppress("UNCHECKED_CAST")
   - [Modern Android development with Kotlin Part 4](https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb)
-
-
+- [놓치기 쉬운 안드로이드 UI 디테일 살펴보기](https://fornewid.medium.com/%EB%86%93%EC%B9%98%EA%B8%B0-%EC%89%AC%EC%9A%B4-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-ui-%EB%94%94%ED%85%8C%EC%9D%BC-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0-5e5f98c836af)
