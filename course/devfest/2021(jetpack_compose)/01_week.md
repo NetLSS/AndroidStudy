@@ -13,3 +13,7 @@
 
 - 첫째주에 1~4 진행
 - optional 은 잘아는 경우 스킵 가능.
+
+## 수료 후기
+
+[블로그 포스터 보러가기](https://whyprogrammer.tistory.com/633)

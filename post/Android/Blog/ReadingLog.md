@@ -142,9 +142,27 @@ with @ebayKorea
 - 2021-12-08
   - [Rounded corner for textview in android](https://stackoverflow.com/questions/18781902/rounded-corner-for-textview-in-android)
   - [how-to-make-a-background-20-transparent-on-android](https://stackoverflow.com/questions/11285961/how-to-make-a-background-20-transparent-on-android)
+- 2021-12-13
+  - [TextView 글자수 초과시 말줄임 (...) 표시](https://jhshjs.tistory.com/27)
+- 2021-12-14
+  - [[안드로이드] dp, dip, sp, px의 차이](https://debugdaldal.tistory.com/109)
+- 2021-12-15
+  - [Android databinding set padding if value is true](https://stackoverflow.com/questions/37487400/android-databinding-set-padding-if-value-is-true)
+  - [android databinding using "&&" logical operator](https://stackoverflow.com/questions/37152824/android-databinding-using-logical-operator)
+  - [Gitmoji 사용하기](https://treasurebear.tistory.com/70)
+- 2021-12-15
+  - [[DataBinding/LiveData] 안드로이드 DataBinding과 LiveData 같이 사용하기](https://dev-imaec.tistory.com/40)
+- 2021-12-16
+  - [Github PR 작업중이라고 표시하기](https://genius-kim-1047.tistory.com/56)
+  - [Git 여러가지 실수에 대처하는 방법](https://imcreator.tistory.com/167)
+  - [[Kotlin] 코틀린 클래스, 인터페이스](https://tourspace.tistory.com/106)
+- 2021-12-17
+  - [[Kotlin] 코루틴 Coroutine - async와 await, LifecycleScope과 ViewModelScope 사용법 및 사용예제- 4편](https://underdog11.tistory.com/entry/Kotlin-%EC%BD%94%EB%A3%A8%ED%8B%B4-Coroutine-async%EA%B3%BC-await-LifecycleScope%EA%B3%BC-ViewModelScope-3%ED%8E%B8)
+- 2021-12-20
+  - [with context 로 awiat 대체하기](https://kotlinworld.com/151)
 # Lazy List
 
 
 - Suppress("UNCHECKED_CAST")
   - [Modern Android development with Kotlin Part 4](https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb)
-
+- [놓치기 쉬운 안드로이드 UI 디테일 살펴보기](https://fornewid.medium.com/%EB%86%93%EC%B9%98%EA%B8%B0-%EC%89%AC%EC%9A%B4-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-ui-%EB%94%94%ED%85%8C%EC%9D%BC-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0-5e5f98c836af)
