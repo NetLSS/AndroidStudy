@@ -160,6 +160,10 @@ with @ebayKorea
   - [[Kotlin] 코루틴 Coroutine - async와 await, LifecycleScope과 ViewModelScope 사용법 및 사용예제- 4편](https://underdog11.tistory.com/entry/Kotlin-%EC%BD%94%EB%A3%A8%ED%8B%B4-Coroutine-async%EA%B3%BC-await-LifecycleScope%EA%B3%BC-ViewModelScope-3%ED%8E%B8)
 - 2021-12-20
   - [with context 로 awiat 대체하기](https://kotlinworld.com/151)
+- 2021-12-27
+  - [createSpeechRecognizer](https://developer.android.com/reference/android/speech/SpeechRecognizer)
+- 2021-12-28
+  - [Playing with String and DataBinding in xml](https://sangcomz.tistory.com/entry/Playing-with-String-and-DataBinding-in-xml)
 # Lazy List
 
 
