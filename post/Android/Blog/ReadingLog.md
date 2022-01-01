@@ -166,6 +166,8 @@ with @ebayKorea
   - [Playing with String and DataBinding in xml](https://sangcomz.tistory.com/entry/Playing-with-String-and-DataBinding-in-xml)
 - 2021-12-30
   - [](https://elfinlas.github.io/2017/12/14/java-annotation/)
+- 2022-01-01
+  - [top-level functions in kotlin](https://deep-dive-dev.tistory.com/43)
 # Lazy List
 
 
