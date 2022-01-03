@@ -166,8 +166,11 @@ with @ebayKorea
   - [Playing with String and DataBinding in xml](https://sangcomz.tistory.com/entry/Playing-with-String-and-DataBinding-in-xml)
 - 2021-12-30
   - [](https://elfinlas.github.io/2017/12/14/java-annotation/)
+- 2022-01-01
+  - [top-level functions in kotlin](https://deep-dive-dev.tistory.com/43)
 - 2022-01-03
   - [Why does getActivity() in Fragment might be null? 2019 :)](https://www.reddit.com/r/androiddev/comments/aklpz4/why_does_getactivity_in_fragment_might_be_null/)
+
 # Lazy List
 
 
