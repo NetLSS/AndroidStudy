@@ -175,3 +175,36 @@ CompletableFuture.supplyAsync {
 ```
 
 완료 가능Future는 Java 8 이상을 대상으로 하는 경우 비동기 작업을 구성, 변환 및 응답하는 데 유용한 API입니다.
+
+### RxJava
+
+RxJava는 관찰 가능한 스트림을 사용하여 이벤트 기반 비동기 코드를 작성하기 위한 라이브러리이다. RxJava는 많은 기능을 제공하며 매우 강력합니다. 그러나 간단한 비동기 코드에도 사용할 수 있다.
+
+RxJava를 사용하여 배경 스레드에서 일부 작업을 실행하는 간단한 예는 다음 코드 스 니펫에서 볼 수 있습니다.
+
+```kotlin
+Single.fromCallable {
+    Thread.sleep(5000)
+    "Single is done"
+}
+.observeOn(Schedulers.io())
+.subscribe { value -> println(value) }
+```
+
+RxJava를 사용하면 이벤트가 어떻게 배출되는지, 작업을 실행하기 위해 어떤 일정을 사용해야 하는지 정의한 다음 해당 작업의 완료를 관리할 수 있습니다. Completable과 상당히 유사합니다.우리가 이전에 살펴본 미래 API입니다.
+
+RxJava를 사용하면 데이터 스트림 변환과 같은 고급 작업도 수행할 수 있습니다.
+
+```kotlin
+Single.fromCallable {
+    Thread.sleep(5000)
+    "Single is done"
+}
+.map { RequestResult(it) }
+.observeOn(Schedulers.io())
+.subscribe { value -> println(value) }
+```
+
+이 예에서는 map() 메소드를 적용하여 내보낸 String 값을 RequestResult 클래스의 인스턴스로 변환했습니다. 이러한 유형의 비동기 데이터 스트림 변환은 RxJava가 대중적인 라이브러리인 이유 중 하나이다.
+
+RxJava는 반드시 이벤트 중심일 필요는 없는 간단한 비동기 코드를 작성하는데 사용될 수 있지만, 이러한 사용 사례에 대해서는 과잉 살상일 수 있다는 점에 유의해야 한다. RxJava는 수많은 사용 사례를 처리할 수 있는 다양한 연산자를 제공하는 대규모 종속성입니다. 간단한 경우 Completable과 같은 경우미래 또는 코루틴이 더 가벼운 솔루션일 수 있습니다.
