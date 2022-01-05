@@ -258,3 +258,10 @@ JavaScript
 ```
 
 코루틴은 비동기 작동에 의존할 수 있는 생성기/스트림(generators/streams) 및 통신 순차 프로세스를 포함한 사용 사례에 매우 적합합니다. 오늘날의 문제들은 점점 더 많은 비동기 코드를 요구하기 때문에 코틀린에 코루틴을 도입했다.
+
+
+### Coroutines with Kotlin
+
+Kotlin에 대한 Coroutine 지원은 1.1 릴리스의 실험 기능으로 처음 제공되었습니다. Kotlin의 1.3 릴리스는 코 루틴에 대한 안정적인 지원을 가져 왔습니다.
+
+코틀린의 코루틴은 `kotlinx.coroutines`이라는 언어로 직접 구축되지 않고 제1자 라이브러리로 구현된다. 이것은 핵심 언어의 표면적을 더 작게 유지하고 코루틴을 더 빨리 반복할 수 있게 해준다. Kotlin coroutines 작업을 시작하려면 프로젝트 종속성으로 Kotlinx-coroutines-core 모듈을 가져와야 합니다.
