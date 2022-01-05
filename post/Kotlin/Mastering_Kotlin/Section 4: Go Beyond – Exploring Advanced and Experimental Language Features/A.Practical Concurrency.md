@@ -265,3 +265,74 @@ JavaScript
 Kotlin에 대한 Coroutine 지원은 1.1 릴리스의 실험 기능으로 처음 제공되었습니다. Kotlin의 1.3 릴리스는 코 루틴에 대한 안정적인 지원을 가져 왔습니다.
 
 코틀린의 코루틴은 `kotlinx.coroutines`이라는 언어로 직접 구축되지 않고 제1자 라이브러리로 구현된다. 이것은 핵심 언어의 표면적을 더 작게 유지하고 코루틴을 더 빨리 반복할 수 있게 해준다. Kotlin coroutines 작업을 시작하려면 프로젝트 종속성으로 Kotlinx-coroutines-core 모듈을 가져와야 합니다.
+
+
+## Coroutines in practice
+
+이제 코루틴의 기본에 대해 알아보았으므로 코루틴을 활용하여 비동기 작업을 처리하는 방법에 대해 알아보겠습니다.
+
+이 섹션에서는 Kotlin에서 코 루틴의 실제 사용법을 살펴 보겠습니다. 사용 가능한 프리미티브를 검토하고 몇 가지 예제를 통해 작업 할 것입니다. 마지막으로, 우리는 적절한 오류 처리 및 코 루틴 범위 제어와 같은 몇 가지 고급 개념을 검토합니다.
+
+### Coroutine primitives
+
+코틀린 코루틴을 다룰 때 이해해야 할 몇 가지 기본 개념이 있습니다. 이러한 점을 강조하기 위해 이전 절의 예를 살펴볼 수 있습니다.
+
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(500)
+        println("Coroutines")
+    }
+
+    println("Hello")
+    Thread.sleep(1000)
+}
+```
+
+앞의 스니펫에는 세 가지 주요 개념의 예가 있습니다.
+
+```
+Coroutine scopes
+Coroutine builders
+Suspending functions
+```
+
+### Coroutine scopes
+
+우리의 간단한 작업 예제에서 GlobalScope는 시작된 코 루틴의 코 루틴 범위입니다.
+
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(500)
+        println("Coroutines")
+    }
+
+    println("Hello")
+    Thread.sleep(1000)
+}
+```
+
+코루틴 범위는 코루틴의 수명을 정의합니다. GlobalScope 내의 코루틴은 애플리케이션 수명 동안 존재할 수 있습니다. 이것은 올바르게 정리되지 않은 경우 응용 프로그램의 수명 동안 존재하는 스레드와 유사합니다. 코루틴 범위의 개념은 우리가 우리의 코루틴을 제한하여 우리의 애플리케이션 내에서 맥락과 라이프 사이클을 지정할 수 있도록 한다. 이 개념은 구조화된 동시성(structured concurrency.)이라고 알려져 있다.
+
+애플리케이션의 기존 수명 주기와 연결되는 고유한 코루틴 범위를 만들 수 있습니다. 예를 들어, Android 앱에서 작업하는 경우 활동 라이프 사이클에 바인딩된 코루틴 범위를 원할 수 있습니다. 우리는 다음과 같은 것을 작성함으로써 그것을 달성할 수 있다:
+
+```kotlin
+class ViewModel {
+    private val mainScope = MainScope()
+    
+    init {
+        mainScope.launch { 
+            // fetch data
+        }
+    }
+
+    fun destroy() {
+        mainScope.cancel()
+    }
+}
+```
+
+이 코드를 사용하여 mainScope라는 이름의 고유한 범위를 만들었으며, 이 범위는 ViewModel 클래스의 수명에 연결됩니다. 파괴() 방식으로 범위를 정리하는 한 실행 중인 코루틴은 제대로 정리되고 리소스는 방출됩니다.
+
+CoroutineScope를 활용함으로써, 우리는 우리의 코루틴이 올바르게 청소되고 가능한 한 효율적으로 작동하도록 도울 수 있다.
