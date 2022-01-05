@@ -66,3 +66,48 @@ Thread finished after 1 second
 이 예는 매우 간단하지만 비동기 프로그래밍의 핵심 과제 중 하나를 보여준다. 우리의 threadExample() 함수로, 우리의 스레드는 Finished threadExample() 로그 메시지가 실행되기 전에 생성되고 시작되었다. 그러나 스레드의 실행을 완료하기 전에 println("완료된 스레드Example()")이 실행됩니다. 새로운 스레드가 실행될 때까지 원래 스레드가 완료되지 않도록 하려면 쓰기, 테스트 및 유지 관리가 어려워지는 추가적인 차단 메커니즘이 필요합니다.
 
 스레드는 현재 실행 스레드를 차단하지 않고 독립적인 코드 조각을 실행하는 수단을 제공합니다. 그러나 스레드 사용과 관련된 문제가 있습니다. 새 스레드를 만드는 것은 프로그램을 실행할 때 상대적으로 비용이 많이 드는 작업이며 스레드가 너무 많으면 시스템 리소스가 손상될 수 있습니다. 우리는 다음 섹션에서이 문제에 대한 하나의 가능한 해결책을 탐구 할 것입니다.
+
+### ExecutorService
+
+모든 태스크에 대해 새 스레드를 작성하는 것은 비동기 작업을 관리하는 데 적합하지 않습니다. 스레드 및 관련 리소스의 수가 빠르게 감당할 수 없게 될 수 있습니다. 이를 개선하기 위한 한 가지 방법은 ExecutorService를 사용하는 것입니다. ExecutorService를 사용하면 비동기적으로 실행할 작업을 제출할 수 있으며, ExecutorService가 작업이 실행되는 스레드를 관리하는 방법을 결정할 수 있습니다.
+
+ExecutorService에 대해 생성하고 재사용할 특정 스레드 수를 정의할 수 있습니다. 따라서 사용되는 리소스의 양이 제한되고 코드의 잠재적인 성능 영향을 쉽게 이해할 수 있습니다.
+
+고정된 스레드 수를 사용하여 ExecutorService를 만드는 것은 다음 스 니펫과 같이 매우 간단하게 수행할 수 있습니다.
+
+```kotlin
+val executor = Executors.newFixedThreadPool(3)
+```
+
+`newFixedThreadPool()` 패토리 메서드로 `ExecutorService` 를 생성하도록 레버레지가 가능함 (특정 스레드 개수만큼 할당하도록)
+
+실행자를 사용할 수 있게 되면 해당 실행자를 사용하여 백그라운드에서 실행할 작업을 제출할 수 있습니다.
+
+```kotlin
+fun threadPoolExample() {
+    executor.submit {
+        Thread.sleep(500) // simulate network request
+        println("Runnable 1")
+    }
+    executor.submit {
+        Thread.sleep(200) // simulate db access
+        println("Runnable 2")
+    }
+    executor.submit {
+        Thread.sleep(300) // simulate network request
+        println("Runnable 3")
+    }
+}
+```
+
+이 예제에서 실행자는 사용 가능한 스레드 풀을 사용하여 제출된 실행 가능한 작업을 예약하고 작업을 실행합니다. 이 코드를 실행하면 다음과 같은 출력을 볼 수 있습니다.
+
+```sh
+Runnable 2
+Runnable 3
+Runnable 1
+```
+
+이 경우, 우리가 실행자에게 제출하는 첫 번째 Runnable은 가장 긴 기간 동안 스레드를 지연시키기 때문에 마지막으로 완료됩니다. 이것은 네트워크 요청과 같은 장기간 실행되는 작업을 시뮬레이션합니다.
+
+크기 3의 스레드 풀로 이 Executor를 만들었기 때문에 주어진 시간에 3개 이하의 스레드들이 생성되고 실행되어 비동기 코드를 실행하는 데 사용할 수 있는 시스템 자원의 양을 제한할 수 있습니다.
