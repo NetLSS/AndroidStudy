@@ -111,3 +111,67 @@ Runnable 1
 이 경우, 우리가 실행자에게 제출하는 첫 번째 Runnable은 가장 긴 기간 동안 스레드를 지연시키기 때문에 마지막으로 완료됩니다. 이것은 네트워크 요청과 같은 장기간 실행되는 작업을 시뮬레이션합니다.
 
 크기 3의 스레드 풀로 이 Executor를 만들었기 때문에 주어진 시간에 3개 이하의 스레드들이 생성되고 실행되어 비동기 코드를 실행하는 데 사용할 수 있는 시스템 자원의 양을 제한할 수 있습니다.
+
+# Advanced threading
+
+스레드 및 ExecutorService와 같은 하위 수준의 비동기 구조 외에도 코틀린과 자바 모두에서 non-blocking 코드를 작성하기 위한 몇 가지 더 진보된 메커니즘이 있다. 이 섹션에서는 다음과 같은 몇 가지 옵션을 살펴보겠습니다.
+
+- CompletableFuture
+- RxJava
+- Coroutines
+
+## CompletableFuture
+
+CompletableFuture는 Java 8에서 새롭게 추가되었습니다. 그것은 명백하게 완성될 수 있는 미래를 제공한다. 그런 다음 다양한 콜백을 사용하여 미래의 완성에 대응하여 다양한 방법으로 데이터를 변환하고 응답할 수 있다.
+
+다음은 String 값을 내보내기 전에 5초 동안 기다리는 CompletableFuture의 기본 예입니다.
+
+```kotlin
+CompletableFuture.supplyAsync {
+    Thread.sleep(5000)
+    "Future is done"
+}
+```
+
+다음과 같은 차단 방식으로 이 값을 검색할 수 있습니다.
+
+```kotlin
+val returnedValue = future.get()
+```
+
+비동기 방식으로 코드를 실행하고 값이 반환되면 응답할 가능성이 더 높습니다. 다음 스니펫은 thenAccept() 방법을 사용하여 이 작업을 수행할 수 있는 한 가지 방법을 보여 줍니다.
+
+```kotlin
+CompletableFuture.supplyAsync {
+    Thread.sleep(5000)
+    "Future is done"
+}.thenAccept {
+    println(it)
+}
+```
+
+thenAccept() 방법은 이러한 미래의 완료에 대응할 수 있는 터미널 방법입니다. 완료에 응답하기 위해 thenAccept()를 사용하면 최종 값에 액세스할 수 있습니다. 그러나 최종 값이 필요하지 않다면, 완료에 대한 응답으로 임의 코드를 실행하기 위해 thenRun()을 사용할 수 있습니다.
+
+```kotlin
+CompletableFuture.supplyAsync {
+    Thread.sleep(5000)
+    "Future is done"
+}.thenRun {
+    println("The future completed")
+}
+```
+
+Completable 사용 시미래에는 다양한 연산자를 사용하여 데이터 스트림을 변환할 수도 있습니다. 다음 코드 조각에서는 thenApply()를 사용하여 반환된 문자열을 새 문자열 값에 매핑할 수 있습니다.
+
+```kotlin
+CompletableFuture.supplyAsync {
+    Thread.sleep(5000)
+    "Future is done"
+}.thenApply {
+    "The supplied value was: $it" // 반환된 문자열 값을 새 문자열 값에 매핑 
+}.thenAccept {
+    println(it)
+}
+```
+
+완료 가능Future는 Java 8 이상을 대상으로 하는 경우 비동기 작업을 구성, 변환 및 응답하는 데 유용한 API입니다.
