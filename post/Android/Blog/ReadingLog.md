@@ -172,6 +172,8 @@ with @ebayKorea
   - [Why does getActivity() in Fragment might be null? 2019 :)](https://www.reddit.com/r/androiddev/comments/aklpz4/why_does_getactivity_in_fragment_might_be_null/)
 - 2022-01-06
   - [cardview-corner-radius](https://stackoverflow.com/questions/29342633/cardview-corner-radius)
+- 2022-01-10
+  - [runCatching](https://developer88.tistory.com/257)
 
 # Lazy List
 
