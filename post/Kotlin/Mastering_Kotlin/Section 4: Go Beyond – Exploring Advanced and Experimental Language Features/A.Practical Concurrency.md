@@ -336,3 +336,27 @@ class ViewModel {
 이 코드를 사용하여 mainScope라는 이름의 고유한 범위를 만들었으며, 이 범위는 ViewModel 클래스의 수명에 연결됩니다. 파괴() 방식으로 범위를 정리하는 한 실행 중인 코루틴은 제대로 정리되고 리소스는 방출됩니다.
 
 CoroutineScope를 활용함으로써, 우리는 우리의 코루틴이 올바르게 청소되고 가능한 한 효율적으로 작동하도록 도울 수 있다.
+
+### Coroutine builders
+
+코루틴 빌더는 다른 특성을 가진 코루틴을 시작하는 데 사용할 수 있는 CoroutineScope 클래스의 확장 기능입니다. 작업 예제를 다시 살펴보면 launch() 빌더의 예제를 볼 수 있습니다.
+
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(500)
+        println("Coroutines")
+    }
+    println("Hello")
+    Thread.sleep(1000)
+}
+```
+
+launch()를 호출하여 현재 스레드를 차단하지 않고 새 코루틴을 시작할 수 있습니다. 다음을 포함하여 다양한 다른 코루틴 빌더를 사용할 수 있습니다.
+
+- async : 코루틴을 생성하고 지연된 미래 결과를 반환합니다.
+- produce : ReceiveChannel을 통해 값 스트림을 반환하는 코루틴 생성
+- broadcast : BroadcastChannel을 통해 값 스트림을 반환하는 코루틴 생성
+- runBlocking : 새 코루틴을 실행하고 반환될 때까지 현재 스레드를 차단합니다.
+
+launch()와 다른 빌더를 사용함으로써, 우리는 우리의 코루틴의 결과와 어떻게 상호작용하기를 원하는지 제어할 수 있다.
