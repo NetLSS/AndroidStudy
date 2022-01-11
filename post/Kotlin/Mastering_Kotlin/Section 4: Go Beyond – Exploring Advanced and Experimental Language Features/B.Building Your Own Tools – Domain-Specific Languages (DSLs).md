@@ -306,3 +306,38 @@ fun HTML.html(init: HTML.() -> Unit): HTML {
 ```
 
 리시버와 함께 기능 타입을 활용함으로써 정적 타입의 안전성과 함께 구성 가능한 기능을 만들 수 있습니다.
+
+## Scope control
+
+우리가 함수 호출을 중첩시키기 시작하면서, 우리는 결국 우리에게 이용 가능한 여러 수신기 문맥을 갖게 될 것이다. 이것은 혼란스럽거나 심지어 잘못되기 시작할 수 있습니다. 예를 들어 HTML 예제에서 다른 HEAD 내부에 HEAD 요소를 생성하는 것은 원하는 동작이 아닐 수 있습니다.
+
+이러한 상황을 피하기 위해 DslMarker 주석을 사용할 수 있습니다. 이러한 주석의 사용은 코틀린 컴파일러에게 주어진 함수의 범위를 제한해야 할 때를 알려주어 외부 범위를 더 이상 사용할 수 없게 할 수 있다.
+
+HTML DSL 예제와 같이 DslMarker를 생성하기 위해 사용자 지정 주석을 만들 수 있습니다.
+
+```kotlin
+@DslMarker
+annotation class HtmlTagMarker
+```
+
+해당 주석을 부모 클래스인 Tag에 추가하여 주어진 범위 내에서 사용할 수 있는 수신기를 표시할 수 있습니다.
+
+```kotlin
+@HtmlTagMarker
+abstract class Tag(val name: String) : Element {
+    ...
+}
+```
+
+DslMarker를 적용하면 다음 코드가 유효하지 않습니다.
+
+```kotlin
+html {
+    head {
+        // error: can't be called in this context by implicit receiver
+        head { } 
+    }
+}
+```
+
+이러한 추가적인 제어 계층은 DSL 내의 어떤 범위에서든 기본적으로 사용 가능한 메소드들이 현재 컨텍스트와 가장 관련이 있음을 보장하여 DSL을 더 쉽게 작업할 수 있게 한다. 이러한 지식으로 우리는 DSL을 최초로 만들고 이를 예시의 도움을 받아 이해할 수 있습니다.
