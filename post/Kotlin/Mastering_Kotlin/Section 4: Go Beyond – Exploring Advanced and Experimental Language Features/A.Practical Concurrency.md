@@ -384,3 +384,60 @@ fun main() {
 `delay()`는 지정된 시간 동안 현재 코루틴을 일시 중단하는 일시중단 함수 입니다. 기능을 중지하는 것은 우리가 현재의 코루틴을 중지하고, 가서 다른 작업을 한 다음, 코루틴을 재개할 수 있는 주요 메커니즘입니다.
 
 
+### Working with blocking code
+
+코루틴은 non-blocking 코드를 구현하기 위해 함께 잘 작동합니다. 그러나 어느 시점에서는 코드가 전통적인 순차적 차단 코드와 상호 작용해야 할 수 있습니다. 이 사례는 실무 사례를 다시 살펴봄으로써 설명할 수 있습니다.
+
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(500)
+        println("Coroutines")
+    }
+    println("Hello")
+    Thread.sleep(1000)
+}
+```
+
+앞의 코드에서 우리는 표준 main() 함수에서 코루틴을 시작합니다. 그러나 main() 함수는 코루틴을 인식하지 못하므로 코루틴이 완료되기 전에 해당 함수가 종료되지 않도록 Thread.sleep()을 호출해야 합니다. 이것은 스레드와 짧은 지연을 사용하여이 장의 시작 부분에 주어진 간단한 예제를 반영합니다. 그러나 네트워크 데이터로드와 같은 중요하지 않은 예제의 경우 미리 정의된 일부 지연에 의존하는 것은 가능하지 않습니다. 
+
+네트워크 요청이나 데이터베이스 작업과 같은 사용 사례의 경우 이전에 언급한 runBlocking() 코루틴 빌더를 사용할 수 있습니다.
+
+```kotlin
+fun main() = runBlocking {
+    GlobalScope.launch {
+        delay(500) // simulate network request
+        println("Coroutines")
+    }
+    println("Hello")
+}
+```
+
+이 변경으로 runBlocking()의 범위 내에 있는 모든 코루틴이 완료될 때까지 main() 함수가 완료되지 않습니다. 지금 이 코드를 실행하면 다음과 같은 출력을 얻을 수 있다.
+
+```
+Hello
+```
+
+Coroutines을 출력해야 하는 코루틴의 결과가 나오지 않고 있습니다. 코루틴은 runBlocking()의 범위가 아닌 GlobalScope를 사용하여 실행되기 때문입니다. 코루틴은 GlobalScope 내에서 범위가 지정되므로 활성 코루틴이 없기 때문에 runBlocking()과 관련된 범위가 완료되며, 이는 실행된 코루틴의 결과를 볼 수 없는 이유입니다.
+
+다음 조각에서 해당 동작을 변경해 보겠습니다.
+
+```kotlin
+fun main() = runBlocking {
+    launch {
+        delay(500)
+        println("Coroutines")
+    }
+    println("Hello")
+}
+```
+
+이제 우리는 우리의 주 함수와 관련된 동일한 범위 내에서 코루틴을 시작하므로, 우리는 다음의 정확한 출력을 볼 수 있다:
+
+```
+Hello
+Coroutines
+```
+
+runBlocking() coroutine 빌더를 사용하면 최소한의 변경으로 blocking 및 non-blocking 코드를 연결할 수 있습니다.
