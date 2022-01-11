@@ -463,3 +463,84 @@ val order = order {
 ```
 
 이제 우리는 주문에 상품을 추가할 준비가 되었습니다.
+
+## Adding elements
+
+이제 주문에 항목을 추가하는 방법을 살펴보겠습니다. 구체적으로, 우리는 구성 불가능한 `Soda` 아이템을 추가한 후 구성 가능한 피자 아이템을 추가하는 것을 검토할 것입니다.
+
+### Adding sodas
+
+주문에 탄산음료 추가에 대한 지원을 추가하는 것부터 시작하겠습니다.
+
+1. 이를 위해 Soda를 다음과 같은 몇 가지 옵션이 있는 밀봉된 클래스로 정의하겠습니다.
+
+```kotlin
+sealed class Soda(name: String) : Item(name)
+object Coke : Soda("Coke")
+object Sprite : Soda("Sprite")
+object Dr_Pepper : Soda("Dr Pepper")
+```
+
+2. Soda 클래스가 마련되어 있으면 Order.Items에 직접 액세스하여 주문에 Soda를 추가할 수 있습니다.
+
+```kt
+val order = order {
+    this.items[Coke] = this.items.getOrDefault(Coke, 0) + 1
+}
+```
+
+이것은 작동하지만 상세하며 기본 데이터 구조와의 직접적인 상호 작용이 필요합니다. 구문을 더 자연스럽게 만들고 데이터 구조를 숨김으로써 이것을 개선합시다.
+
+이렇게 할 수 있는 방법은 다음과 같습니다.
+
+1. 먼저 이전 코드를 간단한 방법으로 리팩터링하여 지도에 탄산음료를 추가하자.
+
+```kt
+fun soda(soda: Soda) = items.put(soda, items.getOrDefault(soda, 0) + 1)
+```
+
+이제 구현 세부 정보가 유출되지 않고 코드가 훨씬 적은 탄산음료를 추가할 수 있습니다.
+
+```kt
+val order = order {
+    soda(Coke)
+}
+```
+
+3. 또한 Soda 클래스에 UnaryPlus 연산자를 구현하여 주문에 Soda를 추가하는 데 보다 능숙한 구문을 제공할 수 있습니다. 이전 방법의 구현을 사용하여 이 작업을 수행할 수 있습니다.
+
+```kt
+operator fun Soda.unaryPlus() = soda(this)
+```
+
+4. 이 새로운 추가 연산자를 사용하면 다음과 같은 주문에 탄산음료를 추가할 수 있습니다.
+
+```kt
+val order = order {
+    soda(Coke)
+    +Sprite
+}
+```
+
+우리가 주문에 탄산음료를 여러 개 추가하고 싶다면요? 우리는 원할 때마다 탄산음료를 수동으로 추가할 수도 있고, 품목 신고와 동시에 수량을 업데이트할 수 있는 메커니즘을 제공할 수도 있습니다.
+
+이를 구현하기 위해 Soda 클래스에 새로운 infix 기능을 추가할 예정입니다.
+
+```kt
+infix fun Soda.quantity(quantity: Int) {
+    items.put(this, items.getOrDefault(this, 0) + quantity)
+}
+```
+
+이제 탄산음료를 추가하고 사람이 읽을 수 있는 방식으로 수량을 지정할 수 있습니다.
+
+val order = order {
+    soda(Coke)
+    +Sprite
+    Coke quantity 2
+}
+
+---
+
+ref
+https://github.com/PacktPublishing/Mastering-Kotlin/tree/master/Chapter11/src/pizza
