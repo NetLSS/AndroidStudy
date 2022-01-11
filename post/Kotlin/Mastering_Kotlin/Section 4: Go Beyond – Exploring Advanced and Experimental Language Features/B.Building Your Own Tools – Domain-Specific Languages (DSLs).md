@@ -412,3 +412,54 @@ add pizza {
 ```
 
 이 코드는 유사코드 이상도 아니지만 읽고 이해하기 쉬우며 피자숍 DSL을 설계할 때 목표로 삼을 수 있는 목표를 제시합니다.
+
+### Creating your starting point
+
+우리의 목표 DSL 구문 개요에 따라, 우리의 첫 번째 단계는 구성될 수 있는 어떤 종류의 주문 객체를 만드는 것이다:
+
+1. 이렇게 하려면 피자 주문을 저장할 Order 클래스를 만드는 것부터 시작하겠습니다.
+
+```kotlin
+class Order(val id: String)
+```
+
+주문이 고유할 수 있도록 단일 id 속성을 가진 단순 클래스로 만들었습니다.
+
+2. 다음으로 Order 클래스에 추가할 수 있는 Item 클래스를 만들겠습니다.
+
+```kt
+abstract class Item(val name: String)
+```
+
+3. 이제 항목 맵과 카운트를 주문 클래스에 추가하겠습니다.
+
+```kt
+class Order(val id: String) : Item("Order")  {
+    val items: MutableMap<Item, Int> = mutableMapOf()
+}
+```
+
+4. Item 맵만 있으면 주문을 작성할 수 있습니다. 이를 위해 다음과 같은 최상위 함수를 만듭니다.
+
+```kt
+fun order(init: Order.() -> Unit): Order {
+    val order = Order(UUID.randomUUID().toString())
+    order.init()
+    return order
+}
+```
+
+다음 흥미로운 두 요소 이 기능과 관련하여:준수해야 한다.
+
+- 함수 이름이 반환 유형을 미러링합니다.
+- 우리는 주문 수신기를 사용하여 함수 인수를 전달합니다.
+
+이 두 가지 특성은 우리가 함수를 호출하고 DSL의 선언적 특성을 강제하는 데 도움이 되는 새로운 순서를 만들고 있음을 이해할 수 있게 한다. 이를 통해 전달된 람다 내에서 Order 인스턴스를 구성할 수도 있습니다.
+
+```kt
+val order = order {
+    println(this.id)
+}
+```
+
+이제 우리는 주문에 상품을 추가할 준비가 되었습니다.
