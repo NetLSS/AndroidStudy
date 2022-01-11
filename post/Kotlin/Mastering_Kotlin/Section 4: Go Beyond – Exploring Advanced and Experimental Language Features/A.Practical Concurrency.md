@@ -441,3 +441,54 @@ Coroutines
 ```
 
 runBlocking() coroutine 빌더를 사용하면 최소한의 변경으로 blocking 및 non-blocking 코드를 연결할 수 있습니다.
+
+### Fetching data
+
+프로덕션 응용 프로그램에 코루틴을 사용하는 한 가지 실용적인 예는 별도의 데이터 원본에서 데이터를 로드하는 것입니다. 다른 접근 방식이나 프레임워크에서는 여러 콜백을 요구하거나 반응성 스트림 라인을 따라 무언가를 사용해야 할 수 있습니다. 이러한 접근 방식은 읽고 따르기가 어려울 수 있습니다. 코루틴은 이러한 유형의 사용 사례를 훨씬 단순하게 만들 수 있습니다.
+
+1. 먼저 애플리케이션에서 화면 초기화를 시뮬레이션하는 새로운 main() 함수를 정의해 보겠습니다.
+
+```kotlin
+fun main() = runBlocking {
+    println("show loading....")
+    launch {
+        println("loaded data = ${loadData()}")
+    }
+    println("called loadData()")
+}
+```
+
+2. loadData()를 호출하고 출력을 출력하는 새로운 코루틴을 출시합니다. 이는 코루틴 내에서 수행되기 때문에 loadData()의 실행은 초기화의 나머지 부분을 지연시키지 않습니다.
+
+```
+show loading....
+called loadData()
+loaded data = 9
+```
+
+3. 이제 loadData()가 구현되는 방법을 살펴보겠습니다.
+
+```kotlin
+suspend fun loadData() : Int {
+    return loadFromSource1() + loadFromSource2()
+}
+```
+
+4. loadData() 함수는 매우 간단합니다. 단순히 loadFromSource1() 및 loadFromSource2()의 추가된 값을 반환합니다.
+
+```kotlin
+suspend fun loadFromSource1() : Int {
+    delay(1000)
+    return 3
+}
+
+suspend fun loadFromSource2() : Int {
+    delay(4000)
+    return 6
+}
+```
+
+이 경우 loadFromSource1() 및 loadFromSource2()는 일정 시간 지연된 후 정수를 반환합니다. 그러나 이 작업은 네트워크 요청이나 데이터베이스 작업을 차단하는 데 그칠 수 있습니다. 이 중 어느 경우라도 호출 코드는 함수가 반환되는 데 시간이 얼마나 걸릴지 알 수 없기 때문에 `suspend fun`으로 구현된 것이다.
+
+두 로딩 함수 모두 `suspend fun`이므로 loadData()도 `suspend fun`이여야 합니다. 이러한 유형의 코드에 대해 코 루틴을 활용함으로써 결과는 순차적이고 효율적이며 따라 가기 쉬운 비동기 코드입니다.
+
