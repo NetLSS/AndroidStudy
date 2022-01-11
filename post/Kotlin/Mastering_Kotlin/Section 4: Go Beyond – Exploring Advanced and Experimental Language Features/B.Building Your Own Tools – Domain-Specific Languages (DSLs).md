@@ -242,3 +242,67 @@ fun HTML.html(init: HTML.() -> Unit): HTML {
 ```
 
 이것은 같은 종류의 수신기 인수를 사용하지만 구성을 위해 확장 함수의 암시적 HTML 수신기에 의존하므로 기존 HTML에 이미 설정된 것에 추가할 수 있다.
+
+## Function types with receivers
+
+코틀린에서 DSL의 힘은 대부분 안전 유형에서 비롯된다. 우리가 조사하던 html 함수를 호출하면 HTML 수신기로 함수 인수를 전달합니다. 코틀린의 람다 구문 때문에, 우리는 전달된 함수를 괄호 밖으로 옮겨서 코드를 읽고 쓰는 것을 더 쉽게 할 수 있다.
+
+```kotlin 
+val result = html {
+    ...
+}
+```
+
+다음 스니펫에서는 init 인수가 HTML 타입의 수신기를 가진 함수 타입으로 어떻게 정의되는지 알 수 있다. 수신기로 함수 유형을 나타내려면 먼저 유형을 참조한 다음 .()를 추가해야 합니다. 따라서 이 경우 HTML.()은 HTML 수신기가 있는 유닛을 반환하는 함수 유형을 나타냅니다.
+
+```kotlin 
+fun html(init: HTML.() -> Unit): HTML {
+    val html = HTML()
+    html.init()
+    return html
+}
+```
+
+그런 다음 람다 구문을 사용하여 init 인수를 함수에 전달할 수 있습니다. 전달된 람다 내에서 다음과 같이 HTML 수신기에서 속성 및 호출 메서드에 액세스할 수 있습니다.
+
+```kotlin 
+val result = html {
+    head {
+        ...
+    }
+    body {
+        ...
+    }
+
+```
+
+이 경우 헤드 및 바디 함수 호출은 HTML 클래스의 메서드입니다.
+
+```kotlin 
+class HTML : TagWithText("html") {
+    fun head(init: Head.() -> Unit) = initTag(Head(), init)
+
+    fun body(init: Body.() -> Unit) = initTag(Body(), init)
+}
+```
+
+람다 블록 내에서 HTML 수신기에 대한 암시적 참조는 HTML 함수 내에 만들어진 새로운 HTML 인스턴스를 참조합니다.
+
+```kotlin 
+fun html(init: HTML.() -> Unit): HTML {
+    val html = HTML()
+    html.init()
+    return html
+}
+```
+
+그러나 앞에서 살펴본 확장 함수의 경우처럼 어떤 HTML 인스턴스라도 사용할 수 있습니다. 이 경우 HTML의 인스턴스를 새로 만드는 대신 확장 함수의 암시적 참조를 사용하여 HTML의 인스턴스에 액세스할 수 있습니다.
+
+```kotlin
+fun HTML.html(init: HTML.() -> Unit): HTML {
+    this.init()
+    return this
+}
+```
+
+리시버와 함께 기능 타입을 활용함으로써 정적 타입의 안전성과 함께 구성 가능한 기능을 만들 수 있습니다.
