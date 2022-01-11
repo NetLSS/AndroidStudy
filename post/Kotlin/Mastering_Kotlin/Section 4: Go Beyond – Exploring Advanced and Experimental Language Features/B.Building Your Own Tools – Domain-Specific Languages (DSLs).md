@@ -185,3 +185,60 @@ class ViewModel(private kodein: Kodein) {
 - 사용자 지정 범위 주석
 
 하나씩 차례대로 살펴보도록 하겠습니다.
+
+## Top-level and extension functions
+
+도메인별 언어를 코틀린으로 작성하는 것은 대부분 잘 명명된 함수를 사용하는 것으로 요약된다. 이러한 함수들은 종종 읽기 쉽고 유창한 코드를 만들기 위해 함께 구성될 수 있다. DSL을 사용하려면 어떤 종류의 시작점이 있어야 합니다. 그 시작점은 최상위 함수 또는 확장 함수가 될 것입니다.
+
+이러한 함수 유형을 검토하기 위해 이전 HTML 예제를 다시 살펴보겠습니다.
+
+### Top-level functions
+
+이전의 HTML 예에서 HTML이라는 함수를 호출함으로써 HTML 정의를 구축하기 시작했습니다.
+
+```kotlin
+val result = html {
+ ...
+}
+```
+
+html 함수는 글로벌 네임스페이스에서 사용할 수 있는 최상위 함수입니다.
+
+```kotlin
+fun html(init: HTML.() -> Unit): HTML {
+    val html = HTML()
+    html.init()
+    return html
+}
+```
+
+함수의 이름은 HTML에서 반환되는 형식의 이름과 일치합니다. 이것은 함수 호출을 반환될 형식과 일치시키기 때문에 선언형 DSL을 만들 때 일반적인 패턴입니다. 이를 통해 코드가 무엇을 하는지 쉽게 이해할 수 있습니다.
+
+## Extension functions
+
+앞의 예에서 HTML 함수가  호출되었고 그 내부 구현은전달된 init 함수와 함께 사용할 수 있는 HTML 클래스의 초기 인스턴스를 제공하기 위해 남겨졌다. 이것은 처음부터 새로운 HTML 구성을 시작할 때 편리합니다.
+
+경우에 따라 DSL을 기존 개체와 함께 사용할 수 있습니다. 이러한 경우 확장 함수를 사용하여 선언형 DSL에 대체 진입점을 제공할 수 있습니다. 다음 코드는 이를 보여줍니다.
+
+```kotlin
+val result = html {
+    ...
+}
+
+result.html {
+    body {
+        p {+"add on to existing HTML"}
+    }
+}
+```
+
+기존 HTML 오브젝트의 확장을 활성화하기 위해 다음과 같은 간단한 확장 함수를 만들 수 있습니다.
+
+```kotlin
+fun HTML.html(init: HTML.() -> Unit): HTML {
+    init()
+    return this
+}
+```
+
+이것은 같은 종류의 수신기 인수를 사용하지만 구성을 위해 확장 함수의 암시적 HTML 수신기에 의존하므로 기존 HTML에 이미 설정된 것에 추가할 수 있다.
