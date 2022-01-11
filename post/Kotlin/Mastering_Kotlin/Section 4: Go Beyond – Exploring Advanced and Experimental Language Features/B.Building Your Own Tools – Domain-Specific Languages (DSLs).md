@@ -341,3 +341,74 @@ html {
 ```
 
 이러한 추가적인 제어 계층은 DSL 내의 어떤 범위에서든 기본적으로 사용 가능한 메소드들이 현재 컨텍스트와 가장 관련이 있음을 보장하여 DSL을 더 쉽게 작업할 수 있게 한다. 이러한 지식으로 우리는 DSL을 최초로 만들고 이를 예시의 도움을 받아 이해할 수 있습니다.
+
+## Creating your first Kotlin DSL
+
+이제 어떤 도구가 우리 마음대로 사용할 수 있는지, 그리고 그것들이 어떻게 함께 작동할 수 있는지 알게 되었으니, 피자집에서 식사를 주문할 수 있는 우리만의 맞춤 DSL을 만들어 봅시다.
+
+### What problem are you trying to solve?
+
+DSL을 만드는 방법에 대해 생각할 때 DSL이 없는 경우 어떤 구문을 사용하고 싶은지, 그리고 솔루션이 어떤 모습일지를 고려하고자 합니다. DSL을 사용하지 않고 코드가 어떻게 보일지 상상해 봅시다.
+
+DSL이 없으면 다음과 같은 모양의 코드를 작성할 수 있습니다.
+
+```kotlin
+val order = Order("123")
+order.items.put(Sprite, 1)
+order.items.put(Coke, 1)
+
+val pizza1 = HawaiianPizza()
+pizza1.toppings.add(Pepperoni)
+
+val pizza2 = BuildYourOwn()
+pizza2.toppings.add(Pepperoni)
+pizza2.toppings.add(Olive)
+
+order.items.put(pizza1, 1)
+order.items.put(pizza2, 1)
+
+```
+
+이 코드에서는 모든 항목을 매우 질서정연하게 만들 수 있습니다. 따라 하기는 쉽지만, 코드에는 약간의 반복이 있습니다.
+
+DSL을 사용하지 않고 다음과 같이 이 코드를 단순화할 수 있습니다.
+
+```kotlin
+val order = Order("123").apply {
+    items.put(Sprite, 1)
+    items.put(Coke, 1)   
+}
+
+val pizza1 = HawaiianPizza().apply {
+    toppings.add(Pepperoni)
+}
+
+val pizza2 = BuildYourOwn().apply {
+    toppings.add(Pepperoni)
+    toppings.add(Olive)   
+}
+
+order.apply {
+    items.put(pizza1, 1)
+    items.put(pizza2, 1)   
+}
+```
+
+이 버전의 코드는 범위 적용 호출을 사용함으로써 일부 반복을 피하기 시작한다.
+
+우리가 원하는 것은 훨씬 더 자연스럽고 인간이 읽을 수 있는 것이다.
+
+```kotlin
+create new order
+
+add coke
+add 2 sprite
+
+add pizza {
+    pepperoni
+    pineapple
+    olive
+}
+```
+
+이 코드는 유사코드 이상도 아니지만 읽고 이해하기 쉬우며 피자숍 DSL을 설계할 때 목표로 삼을 수 있는 목표를 제시합니다.
