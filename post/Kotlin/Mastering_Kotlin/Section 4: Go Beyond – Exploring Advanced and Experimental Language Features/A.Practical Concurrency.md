@@ -336,3 +336,166 @@ class ViewModel {
 이 코드를 사용하여 mainScope라는 이름의 고유한 범위를 만들었으며, 이 범위는 ViewModel 클래스의 수명에 연결됩니다. 파괴() 방식으로 범위를 정리하는 한 실행 중인 코루틴은 제대로 정리되고 리소스는 방출됩니다.
 
 CoroutineScope를 활용함으로써, 우리는 우리의 코루틴이 올바르게 청소되고 가능한 한 효율적으로 작동하도록 도울 수 있다.
+
+### Coroutine builders
+
+코루틴 빌더는 다른 특성을 가진 코루틴을 시작하는 데 사용할 수 있는 CoroutineScope 클래스의 확장 기능입니다. 작업 예제를 다시 살펴보면 launch() 빌더의 예제를 볼 수 있습니다.
+
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(500)
+        println("Coroutines")
+    }
+    println("Hello")
+    Thread.sleep(1000)
+}
+```
+
+launch()를 호출하여 현재 스레드를 차단하지 않고 새 코루틴을 시작할 수 있습니다. 다음을 포함하여 다양한 다른 코루틴 빌더를 사용할 수 있습니다.
+
+- async : 코루틴을 생성하고 지연된 미래 결과를 반환합니다.
+- produce : ReceiveChannel을 통해 값 스트림을 반환하는 코루틴 생성
+- broadcast : BroadcastChannel을 통해 값 스트림을 반환하는 코루틴 생성
+- runBlocking : 새 코루틴을 실행하고 반환될 때까지 현재 스레드를 차단합니다.
+
+launch()와 다른 빌더를 사용함으로써, 우리는 우리의 코루틴의 결과와 어떻게 상호작용하기를 원하는지 제어할 수 있다.
+
+### Suspending functions
+
+코틀린의 코루틴은 기능을 일시 중단한다는 개념을 포함한다. 일시 중단 함수는 일시 중단 한정자를 함수 정의에 추가하여 나타냅니다. 기능 일시 중지와 관련하여 기억해야 할 두 가지 중요한 사항이 있습니다.
+
+- 그것들은 보통 함수와 같은 방식으로 코루틴 내에서 호출될 수 있다.
+- 다른 정지 함수를 호출할 수 있습니다.
+
+작업 예시로 돌아가면 일시 중단 함수인 `delay()`의 예를 볼 수 있습니다.
+
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(500) // simulate network request
+        println("Coroutines")
+    }
+    println("Hello")
+    Thread.sleep(1000)
+}
+```
+
+`delay()`는 지정된 시간 동안 현재 코루틴을 일시 중단하는 일시중단 함수 입니다. 기능을 중지하는 것은 우리가 현재의 코루틴을 중지하고, 가서 다른 작업을 한 다음, 코루틴을 재개할 수 있는 주요 메커니즘입니다.
+
+
+### Working with blocking code
+
+코루틴은 non-blocking 코드를 구현하기 위해 함께 잘 작동합니다. 그러나 어느 시점에서는 코드가 전통적인 순차적 차단 코드와 상호 작용해야 할 수 있습니다. 이 사례는 실무 사례를 다시 살펴봄으로써 설명할 수 있습니다.
+
+```kotlin
+fun main() {
+    GlobalScope.launch {
+        delay(500)
+        println("Coroutines")
+    }
+    println("Hello")
+    Thread.sleep(1000)
+}
+```
+
+앞의 코드에서 우리는 표준 main() 함수에서 코루틴을 시작합니다. 그러나 main() 함수는 코루틴을 인식하지 못하므로 코루틴이 완료되기 전에 해당 함수가 종료되지 않도록 Thread.sleep()을 호출해야 합니다. 이것은 스레드와 짧은 지연을 사용하여이 장의 시작 부분에 주어진 간단한 예제를 반영합니다. 그러나 네트워크 데이터로드와 같은 중요하지 않은 예제의 경우 미리 정의된 일부 지연에 의존하는 것은 가능하지 않습니다. 
+
+네트워크 요청이나 데이터베이스 작업과 같은 사용 사례의 경우 이전에 언급한 runBlocking() 코루틴 빌더를 사용할 수 있습니다.
+
+```kotlin
+fun main() = runBlocking {
+    GlobalScope.launch {
+        delay(500) // simulate network request
+        println("Coroutines")
+    }
+    println("Hello")
+}
+```
+
+이 변경으로 runBlocking()의 범위 내에 있는 모든 코루틴이 완료될 때까지 main() 함수가 완료되지 않습니다. 지금 이 코드를 실행하면 다음과 같은 출력을 얻을 수 있다.
+
+```
+Hello
+```
+
+Coroutines을 출력해야 하는 코루틴의 결과가 나오지 않고 있습니다. 코루틴은 runBlocking()의 범위가 아닌 GlobalScope를 사용하여 실행되기 때문입니다. 코루틴은 GlobalScope 내에서 범위가 지정되므로 활성 코루틴이 없기 때문에 runBlocking()과 관련된 범위가 완료되며, 이는 실행된 코루틴의 결과를 볼 수 없는 이유입니다.
+
+다음 조각에서 해당 동작을 변경해 보겠습니다.
+
+```kotlin
+fun main() = runBlocking {
+    launch {
+        delay(500)
+        println("Coroutines")
+    }
+    println("Hello")
+}
+```
+
+이제 우리는 우리의 주 함수와 관련된 동일한 범위 내에서 코루틴을 시작하므로, 우리는 다음의 정확한 출력을 볼 수 있다:
+
+```
+Hello
+Coroutines
+```
+
+runBlocking() coroutine 빌더를 사용하면 최소한의 변경으로 blocking 및 non-blocking 코드를 연결할 수 있습니다.
+
+### Fetching data
+
+프로덕션 응용 프로그램에 코루틴을 사용하는 한 가지 실용적인 예는 별도의 데이터 원본에서 데이터를 로드하는 것입니다. 다른 접근 방식이나 프레임워크에서는 여러 콜백을 요구하거나 반응성 스트림 라인을 따라 무언가를 사용해야 할 수 있습니다. 이러한 접근 방식은 읽고 따르기가 어려울 수 있습니다. 코루틴은 이러한 유형의 사용 사례를 훨씬 단순하게 만들 수 있습니다.
+
+1. 먼저 애플리케이션에서 화면 초기화를 시뮬레이션하는 새로운 main() 함수를 정의해 보겠습니다.
+
+```kotlin
+fun main() = runBlocking {
+    println("show loading....")
+    launch {
+        println("loaded data = ${loadData()}")
+    }
+    println("called loadData()")
+}
+```
+
+2. loadData()를 호출하고 출력을 출력하는 새로운 코루틴을 출시합니다. 이는 코루틴 내에서 수행되기 때문에 loadData()의 실행은 초기화의 나머지 부분을 지연시키지 않습니다.
+
+```
+show loading....
+called loadData()
+loaded data = 9
+```
+
+3. 이제 loadData()가 구현되는 방법을 살펴보겠습니다.
+
+```kotlin
+suspend fun loadData() : Int {
+    return loadFromSource1() + loadFromSource2()
+}
+```
+
+4. loadData() 함수는 매우 간단합니다. 단순히 loadFromSource1() 및 loadFromSource2()의 추가된 값을 반환합니다.
+
+```kotlin
+suspend fun loadFromSource1() : Int {
+    delay(1000)
+    return 3
+}
+
+suspend fun loadFromSource2() : Int {
+    delay(4000)
+    return 6
+}
+```
+
+이 경우 loadFromSource1() 및 loadFromSource2()는 일정 시간 지연된 후 정수를 반환합니다. 그러나 이 작업은 네트워크 요청이나 데이터베이스 작업을 차단하는 데 그칠 수 있습니다. 이 중 어느 경우라도 호출 코드는 함수가 반환되는 데 시간이 얼마나 걸릴지 알 수 없기 때문에 `suspend fun`으로 구현된 것이다.
+
+두 로딩 함수 모두 `suspend fun`이므로 loadData()도 `suspend fun`이여야 합니다. 이러한 유형의 코드에 대해 코 루틴을 활용함으로써 결과는 순차적이고 효율적이며 따라 가기 쉬운 비동기 코드입니다.
+
+## Summary
+
+현대 애플리케이션은 적절한 성능과 품질 사용자 경험을 제공하기 위해 비동기 멀티스레드 코드를 점점 더 필요로 한다.
+
+코틀린 응용 프로그램들은 비동기 코드를 작성하는 데 사용할 수 있는 다양한 도구들을 가지고 있다. Java에서와 마찬가지로, 우리는 응용프로그램의 스레딩 모델을 제어하기 위해 스레드, 스레드풀 및 Executors를 사용할 수 있다. RxJava와 같은 고급 도구를 활용하여 Java와 Kotlin 모두에서 이러한 비동기 작업을 간단하게 작성할 수 있습니다. 이 장에서는 코틀린이 비차단 비동기 코드를 작성하기 위한 제1자 솔루션으로 코루틴을 지원하는 방법을 조사했다. 코루틴은 개발자가 비동기 코드를 읽기 쉽고 따르기 쉬운 명령적 방식으로 작성할 수 있게 해주면서 동시에 성능과 효율성을 높입니다. 코틀린이 사용할 수 있는 모든 곳에서 사용할 수 있으므로, 코틀린 네이티브가 타깃으로 삼을 수 있는 Android, iOS 및 웹과 같은 플랫폼에서 사용할 수 있습니다.
+
+다음 챕터에서는 사용자 지정 도메인별 언어를 만드는 방법에 대해 알아보면서 추가적인 고급 언어 기능에 대해 알아보겠습니다.
