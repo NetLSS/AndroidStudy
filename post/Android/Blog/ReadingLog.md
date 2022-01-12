@@ -174,6 +174,8 @@ with @ebayKorea
   - [cardview-corner-radius](https://stackoverflow.com/questions/29342633/cardview-corner-radius)
 - 2022-01-10
   - [runCatching](https://developer88.tistory.com/257)
+- 2022-01-12
+  - [recyclerview-gridlayoutmanager-with-full-width-header](https://stackoverflow.com/questions/37642869/recyclerview-gridlayoutmanager-with-full-width-header)
 
 # Lazy List
 
