@@ -540,7 +540,113 @@ val order = order {
     Coke quantity 2
 }
 
----
+> [소스 코드 보러가기](https://github.com/PacktPublishing/Mastering-Kotlin/tree/master/Chapter11/src/pizza)
 
-ref
-https://github.com/PacktPublishing/Mastering-Kotlin/tree/master/Chapter11/src/pizza
+
+### Adding pizzas
+
+이제 피자를 주문에 추가할 수 있는 기능을 추가하고 피자를 구성해 보겠습니다.
+
+1. 먼저 피자 클래스에 포함되는 토핑 클래스를 만들 것입니다.
+
+```kt
+sealed class Topping(name: String): Item(name) // 토핑 클래스
+object Pepperoni : Topping("Pepperoni")
+object Olive : Topping("Olive")
+object Pineapple : Topping("Pineapple")
+```
+
+2. 이제 Pizza 클래스를 추가합니다.
+
+```kt
+sealed class Pizza(name: String) : Item(name) {
+    val toppings: MutableList<Topping> = mutableListOf()
+}
+```
+
+이 Pizza 클래스는 Item을 확장하고 피자 토핑을 저장하기 위한 MutableList<Topping> 필드가 있습니다.
+
+3. 다음으로, 우리는 우리의 사용자가 주문할 수있는 피자의 몇 가지 미리 정의 된 유형을 만들 것입니다 :
+
+```kt
+class BuildYourOwn(init: Pizza.() -> Unit = {}) : 
+                   Pizza("Build Your Own Pizza") {
+    init {
+        init.invoke(this)
+    }
+}
+class PepperoniPizza(init: Pizza.() -> Unit = {}) : 
+                     Pizza("Pepperoni Pizza") {
+    init {
+        toppings.add(Pepperoni)
+        init.invoke(this)
+    }
+}
+```
+
+두 클래스 모두 피자 리시버를 사용하는 함수인 init 인수를 취한다. 그런 다음 클래스 초기화 중에 이 함수를 호출하여 클래스 작성자가 인스턴스를 구성할 수 있도록 합니다. 페퍼로니피자 클래스는 또한 피자에 기본 토핑을 추가합니다.
+
+토핑 클래스에 대해 unaryPlus 연산자를 추가하면 피자 인스턴스를 구성하는 컨텍스트 내에서 토핑을 추가하는 방법을 단순화할 수 있습니다.
+
+```kt
+operator fun Topping.unaryPlus() = toppings.add(this)
+class PepperoniPizza(init: Pizza.() -> Unit = {}) : 
+                     Pizza("Pepperoni Pizza") {
+    init {
+        +Pepperoni
+        init.invoke(this)
+    }
+}
+```
+
+이제 피자를 주문에 추가할 준비가 되었습니다. 시작하려면 Order 클래스에 새 메서드를 만듭니다.
+
+```kt
+fun pizza(init: Pizza.() -> Unit) {
+    val pizza = BuildYourOwn()
+    pizza.init()
+    items[pizza] = 1
+}
+```
+
+이 방법은 피자를 구성할 수 있도록 피자 리시버의 함수 유형을 사용합니다. 또한 기본 `BuildYourOwn` 인스턴스와 피자를 항목 맵에 추가합니다. 이제 주문에 피자를 추가할 수 있습니다.
+
+```kt
+val order = order {
+    soda(Coke)
+    +Sprite
+    Dr_Pepper quantity 2
+    
+    pizza { 
+        +Pineapple
+    }
+}
+```
+
+미리 정의된 피자를 추가한 다음 직접 구성하려고 하면 어떨까요? 그러기 위해서는 피자용 unaryPlus 연산자를 주문 클래스에 추가할 수 있습니다.
+
+```kt
+operator fun Pizza.unaryPlus() {
+    items.put(this, items.getOrDefault(this, 0) + 1)
+}
+```
+
+이제 + 연산자를 사용하여 피자를 추가한 다음 구성 블록을 넘겨 토핑을 업데이트할 수 있습니다.
+
+```kt
+val order = order {
+    soda(Coke)
+    +Sprite
+    Dr_Pepper quantity 2
+
+    pizza {
+        +Pineapple
+    }
+    
+    +HawaiianPizza {
+        +Pepperoni
+    }
+}
+```
+
+우리는 이제 소다와 피자 둘 다 주문에 추가할 수 있는 몇 가지 방법을 가지고 있습니다. 이제 @DslMarker를 추가하여 구성(configuration)이 가장 로컬 범위와 관련된 기본 function을 차단하는지 확인해 보겠습니다.
