@@ -650,3 +650,155 @@ val order = order {
 ```
 
 우리는 이제 소다와 피자 둘 다 주문에 추가할 수 있는 몇 가지 방법을 가지고 있습니다. 이제 @DslMarker를 추가하여 구성(configuration)이 가장 로컬 범위와 관련된 기본 function을 차단하는지 확인해 보겠습니다.
+
+### Making it easy to use
+
+현재는 @DslMarker 주석이 없기 때문에 이러한 함수 호출을 중첩하기 시작하면 서로 다른 여러 수신기에 대한 함수에 액세스할 수 있습니다. 예를 들어, 다음의 코드 조각에서, 우리는 피자를 위한 init 블록 내의 soda 함수를 호출할 수 있다.
+
+```kt
++HawaiianPizza {
+    +Pepperoni
+    soda(Coke) // want to avoid this
+}
+```
+
+피자에 탄산음료를 첨가하는 것은 말이 되지 않기 때문에 이러한 행동은 이상적이지 않습니다. 따라서 기본적으로 이 동작을 제한하려고 합니다. 이를 위해 새 @DslMarker 주석을 만들 수 있습니다.
+
+```kt
+@DslMarker
+annotation class ItemTagMarker
+```
+
+그런 다음 해당 항목을 항목의 기본 클래스에 추가할 수 있습니다.
+
+```kt
+@ItemTagMarker
+abstract class Item(val name: String)
+```
+
+만약 당신이 암묵적 수신기의 메소드 속성에 접근하려고 한다면 컴파일러는 그것을 오류로 표시할 것이다:
+
+```kt
++HawaiianPizza {
+    +Pepperoni
+    soda(Coke) // now an error
+}
+```
+
+이것은 또한 외부 receiver를 참조하고자 하는 경우에는 명시적으로 호출해야 한다는 것을 의미합니다. 이것의 한 예는 Toping.unaryPlus()의 구현에 있다.
+
+```kt
+operator fun Topping.unaryPlus() = this@Pizza.toppings.add(this)
+```
+
+이제, 우리의 주문이 어떻게 보이는지 보고 싶다면, 우리는 약간의 로깅 기능을 추가할 수 있습니다. 시작하려면 항목 기본 클래스에 인쇄 방법을 추가합니다.
+
+```kt
+@ItemTagMarker
+abstract class Item(val name: String) {
+    open fun log(indent: String = "") {
+        println("$indent$name")
+    }
+}
+```
+
+피자에 대해 다음과 같이 해당 동작을 재정의합니다.
+
+```kt
+sealed class Pizza(name: String) : Item(name) {
+
+    val toppings: MutableList<Topping> = mutableListOf()
+
+    operator fun Topping.unaryPlus() = this@Pizza.toppings.add(this)
+
+    override fun log(indent: String) {
+        super.log(indent)
+        toppings.forEach {
+            println("$indent      ${it.name}")
+        }
+    }
+}
+```
+
+마지막으로 log() 방법을 사용하여 전체 주문을 인쇄할 수 있는 print() 방법을 주문 클래스에 추가합니다.
+
+```kt
+fun log() {
+    println("Order: $id")
+    println("Items")
+    items.forEach {
+        print("${it.value} x ")
+        it.key.log("  ")
+    }
+}
+```
+
+이제 다음 주문을 출력할 수 있습니다.
+
+```kt
+fun main() {
+
+    val order = order {
+        soda(Dr_Pepper)
+        soda(Coke)
+
+        Sprite quantity 1
+
+        +Coke
+        +Dr_Pepper
+
+        Sprite quantity 2
+
+        +HawaiianPizza {
+            +Pepperoni
+        }
+        pizza {
+            +Pepperoni
+            +Olive
+        }
+    }
+
+    order.log()
+}
+```
+
+이 오더를 통해 다음과 같은 출력을 얻을 수 있습니다.
+
+```kt
+Order: 9de6134e-23f3-44e5-88f1-2af373c399a8
+Items
+2 x Dr Pepper
+2 x Coke
+3 x Sprite
+1 x Hawaiian Pizza
+      Pineapple
+      Pepperoni
+1 x Build Your Own Pizza
+      Pepperoni
+      Olive
+```
+
+이를 통해 피자집 주문을 위한 매우 간단한 DSL을 구축했습니다. 프로덕션 DSL의 경우, 우리는 더 많은 구성성을 구축하고 기능을 확장하고 싶지만, 구성 요소는 동일합니다.
+
+## Summary
+
+도메인별 언어(DSL)는 특정 유형의 문제를 해결하기 위한 편리하고 선언적이며 안전한 유형 구문을 제공합니다. 코틀린으로 작성된 DSL은 HTML 레이아웃 선언, 모바일 UI 프레임워크 구축, 웹 서버용 HTTP 경로 정의와 같은 문제에 적용되어 왔다. 우리는 코틀린에서 DSL은 주로 기능과 수신기가 있는 함수 리터럴로 구성된다는 것을 보았습니다. 이러한 메커니즘을 통해, 우리는 인간이 읽을 수 있는 선언적 구문을 구축하는 데 유용한 타입 세이프 빌더를 구축할 수 있다. 또한 확장 기능, infix 표기법 및 사용자 지정 주석과 같은 Kotlin 기능이 사용자 지정 DSL의 유용성과 가독성을 어떻게 향상시킬 수 있는지 살펴봤습니다. 마지막으로 모바일 UI를 정의하기 위해 이러한 기능을 자체 도메인별 언어 구성에 적용하는 방법을 배웠다.
+
+다음 챕터에서는 Kotlin의 함수 프로그래밍에 대해 살펴보고 높은 기능의 코드를 작성하는 데 사용할 수 있는 특정 라이브러리에 대해 알아보겠습니다.
+
+## 질문들
+
+- DSL은 무엇의 약자입니까?
+- DSL이 적용될 수 있는 도메인의 두 가지 예를 들어볼 수 있나요?
+- 코틀린에서 DSL의 두 가지 주요 구성 요소는 무엇입니까?
+- DSL 기능의 범위를 제어하는 두 가지 메커니즘은 무엇입니까?
+- @DslMarker 주석의 용도는 무엇입니까?
+- 맞춤 DSL이 제공할 수 있는 두 가지 이점은 무엇입니까?
+
+## 추가
+
+Functional Kotlin (https://www.packtpub.com/application-development/functional-kotlin)  
+Hands-On Design Patterns with Kotlin (https://www.packtpub.com/application-development/hands-design-patterns-kotlin)  
+Learning Kotlin by Building Android Applications (https://www.packtpub.com/application-development/learning-kotlin-building-android-applications)  
+
+
