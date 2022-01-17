@@ -86,3 +86,59 @@ fun formatDateForUI(date: Date): String {
 ```
 
 이러한 불변성 적용, 편리하고 명시적인 데이터 클래스 복사 및 도우미 클래스 감소는 코드베이스 내의 복잡성을 줄이는 데 도움이 될 수 있다. 코틀린이 함수 프로그래밍을 지원하고 그 지원의 혜택을 받는 가장 큰 방법 중 하나는 고차 함수 지원을 통해서이다. 다음 섹션에서는 고차 함수가 코틀린의 함수 프로그래밍을 어떻게 개선하는지 살펴보겠습니다.
+
+## Understanding advanced functions
+
+함수형 프로그래밍 언어에서 함수는 일반적으로 언어의 일급 시민으로 취급된다. 고차 함수는 물론 최상위 함수를 지원하는 코틀린에서도 마찬가지여서 함수를 다른 함수의 입출력처럼 처리할 수 있다는 의미다.
+
+이 섹션에서는 코틀린에서 고차 기능의 두 가지 중요한 측면에 대해 알아보겠습니다. 다음은 다음과 같습니다.
+
+- 기능 유형 작업
+- 고차 함수 성능 향상
+
+이러한 섹션을 통해 코드에서 고차 함수를 효율적으로 사용하는 방법과 코틀린 표준 라이브러리가 어떻게 구축되는지 이해할 수 있습니다.
+
+## Working with functional types
+
+앞서 이 책에서 살펴본 것처럼 코틀린은 데이터 유형으로서의 함수을 지원합니다. 이를 통해 다음 두 가지 작업을 수행할 수 있습니다.
+
+- 함수를 변수 및 속성으로 저장
+- 함수를 다른 함수에 인수로 전달합니다.
+
+이 섹션에서는 이러한 각 사항에 대해 더 자세히 알아보겠습니다.
+
+## Functional variables
+
+함수 변수 작업 방법을 빠르게 새로 고치겠습니다. 다음과 같은 함수 유형을 사용하여 변수를 정의할 수 있습니다.
+
+```kt
+var onClickHandler: (ViewState) -> Unit = {}
+```
+
+그런 다음 저장된 함수를 다른 변수와 마찬가지로 재할당할 수 있다.
+
+```kt
+fun main() {
+    onClickHandler = { viewState ->
+        println("viewState -> ${viewState.title} 
+                ${viewState.subtitle}")
+    }
+}
+```
+
+마지막으로, 변수가 함수를 나타내므로 다음과 같이 변수 이름을 참조하여 함수를 호출할 수 있습니다.
+
+```kt
+fun main() {
+    onClickHandler = { viewState ->
+        println("viewState -> ${viewState.title} 
+                ${viewState.subtitle}")
+    }
+    
+    val viewState = ViewState("Hello", "Kotlin")
+    onClickHandler(viewState)
+    onClickHandler.invoke(viewState)
+}
+```
+
+함수 유형으로 변수를 저장하고 업데이트할 수 있게 함으로써, 코틀린은 기능 연산에 더 많이 의존하는 기능 측면과 코드 작성을 시작할 수 있게 한다.
