@@ -142,3 +142,90 @@ fun main() {
 ```
 
 함수 유형으로 변수를 저장하고 업데이트할 수 있게 함으로써, 코틀린은 기능 연산에 더 많이 의존하는 기능 측면과 코드 작성을 시작할 수 있게 한다.
+
+## Functional arguments
+
+이제 함수 유형을 사용한 작업을 검토했으므로 이러한 함수 유형을 다른 함수에 대한 인수로 사용하는 방법에 대해 살펴보겠습니다.
+
+다음은 이전에 정의한 onClickHandler 변수의 함수 시그니처와 일치하는 함수 매개 변수를 정의한 고차 함수의 기본 예입니다.
+
+```kt
+class ViewModel(val viewState: ViewState, val clickHandler:(ViewState) -> Unit)
+
+fun createViewModel(viewState: ViewState, clickHandler: (ViewState) -> Unit) : ViewModel {
+    return ViewModel(viewState, clickHandler)
+}
+```
+
+그런 다음 onClickHandler 함수 변수를 새로 정의된 createViewModel() 함수에 인수로 전달할 수 있습니다.
+
+```kt
+fun main() {
+    ...
+    
+    createViewModel(viewState, onClickHandler)
+}
+```
+
+다른 유형과 마찬가지로 함수를 변수로 저장한 다음 정의된 유형을 예상하는 위치로 전달할 수 있습니다. 함수 매개변수는 우리가 몇 가지 흥미로운 것들을 할 수 있게 해줍니다. 함수 생성자 파라미터를 사용하여 클래스를 생성하고 구성할 수 있는 예는 다음과 같습니다.
+
+```kt
+class LoadingViewModel(config: (LoadingViewModel) -> Unit) {
+    var title = ""
+    var subtitle = ""
+    var loadingMsg = ""
+    val successMsg = ""
+
+    init {
+        config(this)
+    }
+}
+```
+
+이 LoadingViewModel에는 사용할 때 필요하거나 필요하지 않은 몇 가지 속성이 있습니다. 클래스가 인스턴스화될 때 클라이언트가 각 속성의 값을 지정하도록 강제하는 대신 다음과 같이 LoadingViewModel 인스턴스를 만들고 구성할 수 있습니다.
+
+```kt
+LoadingViewModel { loadingViewModel ->
+    loadingViewModel.title = "Hello"
+    loadingViewModel.loadingMsg "Loading..."
+}
+```
+
+이렇게 하면 람다 구문과 함수 파라미터를 사용하여 () 없이 LoadingViewModel을 인스턴스화한 다음 전달된 람다 내에서 속성을 구성할 수 있습니다. 이 문법은 클래스를 구성하는 함수이기 때문에 더 기능적인 코드 베이스 내에서 매우 유창하고 자연스럽게 느껴지기 시작합니다.
+
+이전 장에서 살펴본 것처럼 수신기와 함께 함수 유형을 사용함으로써 이러한 구성 패턴을 개선할 수 있습니다. LoadingViewModel을 유일한 매개 변수로 사용하는 대신 LoadingViewModel의 인스턴스를 수신기로 갖도록 함수 매개 변수를 다음과 같이 리팩터링할 수 있습니다.
+
+```kt
+class LoadingViewModel(config: LoadingViewModel.() -> Unit) {
+    var title = ""
+    var subtitle = ""
+    var loadingMsg = ""
+    val successMsg = ""
+
+    init {
+        config(this)
+    }
+}
+```
+
+이제 구성 매개 변수는 LoadingViewModel의 인스턴스를 수신기로 사용하는 함수를 사용하고 현재 인스턴스를 클래스의 init{} 블록 내에 있는 구성 함수에 전달할 수 있습니다.
+
+수신기와 함께 함수 유형을 사용하면 다음과 같이 전달된 LoadingViewModel을 명시적으로 참조할 필요가 없습니다.
+
+```kt
+LoadingViewModel {
+    this.title = "Hello"
+    this.loadingMsg = "Loading..."
+}
+```
+
+LoadingViewModel 인스턴스를 람다 컨텍스트 내에서 암시적으로 참조할 수 있습니다. 이러한 점을 염두에 두고 이전의 예제를 다음과 같이 더욱 단순화할 수 있습니다.
+
+```kt
+LoadingViewModel {
+    title = "Hello"
+    loadingMsg = "Loading..."
+}
+```
+
+이 최신 예제에서는 제목을 참조하고 Msg 속성을 로드할 때 이 함수의 명시적인 사용을 제거했습니다. 이것과 다른 고차 함수들의 예들을 통해, 우리는 클래스들과 API들을 디자인하고 소비할 때 그것들이 얼마나 유용하게 사용될 수 있는지 알게 되었습니다. 다음 섹션에서는 고차 기능이 프로그램 성능에 부정적인 영향을 미치지 않도록 하는 방법에 대해 살펴보겠습니다.
