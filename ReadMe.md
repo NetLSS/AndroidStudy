@@ -12,6 +12,8 @@
 - 아키텍처를 알아야 앱 개발이 보인다 ([저장소 별도](https://github.com/NetLSS/AndroidCleanArchitecture))
 - 이것이 취업을 위한 코딩 테스트다 (3회독 ing)
 - 안드로이드 하드웨어 서비스
+- Mastering Kotlin
+- 안드로이드 스튜디오 Arctic Fox & 프로그래밍
 
 ## 수강중인 강의들
 
