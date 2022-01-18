@@ -176,7 +176,9 @@ with @ebayKorea
   - [runCatching](https://developer88.tistory.com/257)
 - 2022-01-12
   - [recyclerview-gridlayoutmanager-with-full-width-header](https://stackoverflow.com/questions/37642869/recyclerview-gridlayoutmanager-with-full-width-header)
-
+- 2022-01-18
+  - [[안드로이드] Switch to the Play Referrer API by March 1, 2020](https://hjlab.tistory.com/423)
+  - [[용어 정리 #4] Android Install Referrer API](https://kibua20.tistory.com/27)
 # Lazy List
 
 
