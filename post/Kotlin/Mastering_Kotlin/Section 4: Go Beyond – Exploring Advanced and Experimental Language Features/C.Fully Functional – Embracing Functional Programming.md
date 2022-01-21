@@ -233,3 +233,112 @@ LoadingViewModel {
 ## Improving the performance of higher-order functions
 
 고차 함수는 상당히 유용할 수 있습니다. 하지만, 그들의 효용은 공짜가 아닙니다. 고차 함수 사용에 따른 간접비가 발생합니다. 이는 컴파일러 수준에서 고차 함수가 작동하는 방식에서 기인합니다. 이 섹션에서는 인라인 및 노라인 한정자를 통해 고차 함수의 성능 특성을 제어할 수 있는 방법에 대해 살펴보겠습니다.
+
+## The inline modifier
+
+우리가 고차 함수의 성능을 제어할 수 있는 한 가지 방법은 인라인 한정자 키워드를 사용하는 것입니다. 인라인 한정자를 사용하면 컴파일러에게 함수의 구현이 콜 사이트에서 인라인될 수 있음을 알려줌으로써 고차 함수의 성능을 향상시킬 수 있으므로 고차 함수의 변수 캡처 및 클래스 인스턴스화와 관련된 성능 오버헤드를 피할 수 있습니다.
+
+이 기능의 작동 방식을 살펴보려면 먼저 이 기능을 정의한 다음 안전하게 실행:
+
+```kt
+fun safelyRun(action: () -> Unit) {
+    try {
+        action()
+    } catch (error: Throwable) {
+        println("Caught error: ${error.message}")
+    }
+}
+```
+
+이것은 try/catch 블록으로 호출을 래핑하면서 람다가 전달되는 모든 것을 실행하는 최상위 고차 함수입니다. 함수 매개 변수를 사용하는 것으로 정의되지만 컴파일러 수준에서는 함수 0 클래스의 인스턴스가 필요합니다.
+
+```java
+public static final void safelyRun(@NotNull Function0 action) {
+   Intrinsics.checkParameterIsNotNull(action, "action");
+
+   try {
+      action.invoke();
+   } catch (Throwable var4) {
+      String var2 = "Caught error: " + var4.getMessage();
+      boolean var3 = false;
+      System.out.println(var2);
+   }
+
+}
+```
+
+Function0 클래스는 람다 내에서 해당 값에 액세스할 수 있도록 람다 내에서 참조되는 모든 변수를 캡처합니다.
+
+따라서 안전하게 실행() 기능을 사용하면 다음과 같습니다.
+
+```kt
+fun main() {
+    val greeting = "Hello"
+    safelyRun {
+        println("$greeting Kotlin")
+    }
+}
+```
+
+컴파일러는 다음과 같은 코드를 생성합니다.
+
+```java
+public static final void main() {
+   final String greeting = "Hello";
+   safelyRun((Function0)(new Function0() {
+      // $FF: synthetic method
+      // $FF: bridge method
+      public Object invoke() {
+         this.invoke();
+         return Unit.INSTANCE;
+      }
+
+      public final void invoke() {
+         String var1 = greeting + " Kotlin";
+         boolean var2 = false;
+         System.out.println(var1);
+      }
+   }));
+}
+```
+
+safeRun()을 호출할 때 외부 클래스와 해당 필드에 대한 암시적 참조가 있는 익명 내부 클래스가 생성됩니다. 이것은 람다가 속성이나 지역 변수와 같은 모든 필수 상태를 캡처할 수 있는 방법입니다. 이 익명 내부 클래스는 람다가 평가될 때마다 인스턴스화됩니다.
+
+고차 함수가 대규모 수집에서 작동하는 경우, 예를 들어 람다 상태 캡처와 관련된 오버헤드가 루프의 각 반복에 대해 지불되므로 더 많은 양의 메모리와 더 많은 수의 가상 메서드 호출이 필요합니다.
+
+다행히 인라인 키워드를 활용하면 이러한 오버헤드를 방지할 수 있습니다. 인라인 함수를 고차 함수에 추가함으로써 컴파일러에게 주어진 함수의 호출을 호출 사이트에서 해당 함수의 실제 구현으로 대체하도록 지시합니다. 예를 업데이트하여 이를 설명하겠습니다.
+
+먼저 다음과 같이 인라인 키워드를 safeRun() 함수에 추가합니다.
+
+```kt
+inline fun safelyRun(action: () -> Unit) {
+    try {
+        action()
+    } catch (error: Throwable) {
+        println("Caught error: ${error.message}")
+    }
+}
+```
+
+이제 생성된 코드를 살펴보면 인라인 추가의 영향을 알 수 있습니다.
+
+```java
+public static final void main() {
+   String greeting = "Hello";
+   boolean var1 = false;
+
+   try {
+      int var7 = false;
+      String var8 = greeting + " Kotlin";
+      boolean var4 = false;
+      System.out.println(var8);
+   } catch (Throwable var6) {
+      String var2 = "Caught error: " + var6.getMessage();
+      boolean var3 = false;
+      System.out.println(var2);
+   }
+
+}
+```
+
+safeRun()의 본문이 main()의 본문으로 다시 작성되었습니다. 이렇게 하면 main()에 정의된 인사말 변수를 캡처하기 위해 Function0의 새 인스턴스를 만들 필요가 없습니다. safeRun()을 호출할 때마다 Function0 인스턴스를 생성할 필요가 없으므로 코드의 성능이 향상되었습니다.
