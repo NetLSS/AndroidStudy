@@ -485,3 +485,67 @@ fun main() {
 ```
 
 이 예에서는 먼저 항목을 필터링한 다음 하나씩 반복하여 인쇄하는 기능을 함께 결합하는 방법을 살펴보십시오. 이러한 패턴을 통해 보다 복잡한 방식으로 이러한 작업을 연결할 수 있습니다.
+
+## Mapping
+
+다음에는 한 값을 다른 값에 매핑하는 방법에 대해 알아보겠습니다. 문자열 "코틀린"을 해당하는 데이터 유형에 매핑해 보겠습니다.
+
+먼저 프로그래밍 언어를 나타내는 밀봉된 클래스를 만듭니다.
+
+```kt
+sealed class ProgrammingLanguage(protected val name: String) {
+    object Kotlin : ProgrammingLanguage("Kotlin")
+    object Java : ProgrammingLanguage("Java")
+    object Swift : ProgrammingLanguage("Swift")
+
+    override fun toString(): String {
+        return "$name Programming Language"
+    }
+}
+```
+
+다음으로 맵() 함수에 호출을 추가하여 String 항목을 해당 언어로 매핑할 수 있습니다. map 연산자를 통해 결과 유형을 수신 데이터 유형에서 원하는 송신 데이터 유형으로 변경할 수 있습니다. 이 경우 String에서 ProgrammingLanguage로 매핑합니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+list.filter { it.startsWith("K") }
+    .map {
+        when (it) {
+            "Kotlin" -> ProgrammingLanguage.Kotlin
+            else -> null
+        }
+    }
+    .forEach { println(it) }
+```
+
+이 기능을 실행하면 다음과 같은 출력이 나옵니다.
+
+```
+Kotlin Programming Language
+null
+```
+
+문자열 "K"를 ProgrammingLanguage에 매핑하여 null을 반환할 수 없으므로 콘솔에 null이 인쇄된 것을 볼 수 있습니다.
+
+이 문제를 해결하기 위해 다른 함수인 filterNotNull()을 사용하여 null이 아닌 값을 필터링할 수 있습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+list.filter { it.startsWith("K") }
+    .map {
+        when (it) {
+            "Kotlin" -> ProgrammingLanguage.Kotlin
+            else -> null
+        }
+    }
+    .filterNotNull()
+    .forEach { println(it) }
+```
+
+이제 이 코드를 실행하면 Null이 아닌 값만 표시됩니다.
+
+```
+Kotlin Programming Language
+```
+
+map() 함수는 데이터 흐름의 특성을 변경하거나 여러 값을 알려진 값 또는 유형의 집합에 매핑할 수 있기 때문에 매우 강력합니다.
