@@ -445,3 +445,43 @@ public static final void main() {
 ```
 
 인라인 및 noinline을 사용하면 컴파일러가 고차 함수에 대해 정의한 함수 매개변수를 처리하는 방법을 제어할 수 있습니다. IntelliJ 기반 IDE는 인라인 함수의 성능에 미치는 영향이 무시할 수 있을 때 경고합니다.
+
+## Leveraging the standard library
+
+코틀린 표준 라이브러리은 매우 다양한 유용한 기능을 제공합니다. 이러한 기능을 통해 바퀴를 재창조할 필요 없이 더 많은 기능 코드를 작성할 수 있습니다. 이 섹션에서는 Kotlin 표준 라이브러리를 활용하여 달성할 수 있는 몇 가지 일반적인 기능 패턴에 대해 살펴보겠습니다.
+
+### Manipulating collections
+
+이 책 전반에 걸쳐, 우리는 우리의 예시 안에서 컬렉션을 사용해 왔습니다. Kotlin 표준 라이브러리는 공통 컬렉션 유형을 매우 쉽게 만들 수 있는 도우미 기능을 제공합니다.
+
+```kt
+fun main() {
+    val list = listOf("Kotlin", "Java", "Swift")
+    val mutableList = mutableListOf("Kotlin", "Java", "Swift")
+    val arrayList = arrayListOf("Kotlin", "Java", "Swift")
+    val array = arrayOf("Kotlin", "Java", "Swift")
+    val map = mapOf("Kotlin" to 1, "Java" to 2, "Swift" to 3)
+}
+```
+
+Kotlin 표준 라이브러리는 이러한 컬렉션 유형을 만든 후 작업할 수 있는 다양한 기능을 제공합니다. 필터, 매핑, 축소, 찾기 등의 작업을 통해 적은 코드로 복잡한 작업을 수행할 수 있는 강력한 기능 체인을 작성할 수 있습니다.
+
+이 섹션에서는 이러한 기능 중 몇 가지와 코틀린 표준 라이브러리의 활용 방법에 대해 살펴보겠습니다.
+
+### Filtering
+
+먼저 필터() 기능을 살펴보겠습니다. 필터() 함수를 사용하면 람다를 제공할 수 있습니다. 람다는 컬렉션에서 항목을 필터링하는 데 사용되는 부울을 반환합니다.
+
+이 예에서는 필터 기능을 사용하여 문자 "K"로 시작하는 항목만 인쇄합니다.
+
+```kt
+fun main() {
+    ...
+
+    val list = listOf("Kotlin", "Java", "Swift")
+    list.filter { it.startsWith("K") }
+        .forEach { println(it) }
+}
+```
+
+이 예에서는 먼저 항목을 필터링한 다음 하나씩 반복하여 인쇄하는 기능을 함께 결합하는 방법을 살펴보십시오. 이러한 패턴을 통해 보다 복잡한 방식으로 이러한 작업을 연결할 수 있습니다.
