@@ -342,3 +342,106 @@ public static final void main() {
 ```
 
 safeRun()의 본문이 main()의 본문으로 다시 작성되었습니다. 이렇게 하면 main()에 정의된 인사말 변수를 캡처하기 위해 Function0의 새 인스턴스를 만들 필요가 없습니다. safeRun()을 호출할 때마다 Function0 인스턴스를 생성할 필요가 없으므로 코드의 성능이 향상되었습니다.
+
+## The noinline modifier
+
+인라인 한정자를 고차 함수에 추가하면 전달된 모든 람다는 콜 사이트에서 인라인 상태가 됩니다. 하지만 이것이 당신이 원하지 않는 경우가 있을 수 있습니다. 이러한 상황에서 우리는 노라인을 활용할 수 있습니다.
+
+우리는 우리의 고차 함수의 함수 파라미터에 noinline 수식어를 추가할 수 있습니다. 이것은 컴파일러에게 특정 람다를 인라인으로 만들지 않도록 지시합니다. 이전 예제를 사용하여 이에 대해 살펴보겠습니다.
+
+1. 두 번째 함수 매개변수를 safeRun()에 추가합니다.
+
+```kt
+inline fun safelyRun(action: () -> Unit, action2:() -> Unit) {
+    try {
+        action()
+        action2()
+    } catch (error: Throwable) {
+        println("Caught error: ${error.message}")
+    }
+}
+```
+
+2. 이제 두 번째 람다를 통과하도록 사용방식을 업데이트하겠습니다.
+
+```kt
+fun main() {
+    val greeting = "Hello"
+    safelyRun({ println("Hi Kotlin")}) {
+        println("$greeting Kotlin")
+    }
+}
+```
+
+3. 생성된 코드를 살펴보면 이전과 매우 비슷하다는 것을 알 수 있습니다. 콜 사이트에서 lamda 두 개가 모두 인라인으로 표시됩니다.
+
+```java
+public static final void main() {
+   String greeting = "Hello";
+   boolean var1 = false;
+
+   try {
+      int var7 = false;
+      String var8 = "Hi Kotlin";
+      boolean var4 = false;
+      System.out.println(var8);
+      var7 = false;
+      var8 = greeting + " Kotlin";
+      var4 = false;
+      System.out.println(var8);
+   } catch (Throwable var6) {
+      String var2 = "Caught error: " + var6.getMessage();
+      boolean var3 = false;
+      System.out.println(var2);
+   }
+
+}
+```
+
+4. 이제 action2 매개 변수에 noinline을 추가하겠습니다.
+
+```kt
+inline fun safelyRun(action: () -> Unit, noinline action2:() -> Unit) {
+    ...
+}
+```
+
+5. 이제 생성된 코드는 두 번째 람다를 인라인으로 만들지 않고 대신 함수0 인스턴스를 생성하여 람다에 필요한 로컬 상태를 캡처합니다.
+
+```java
+public static final void main() {
+   final String greeting = "Hello";
+   Function0 action2$iv = (Function0)(new Function0() {
+      // $FF: synthetic method
+      // $FF: bridge method
+      public Object invoke() {
+         this.invoke();
+         return Unit.INSTANCE;
+      }
+
+      public final void invoke() {
+         String var1 = greeting + " Kotlin";
+         boolean var2 = false;
+         System.out.println(var1);
+      }
+   });
+   boolean var2 = false;
+
+   String var4;
+   boolean var5;
+   try {
+      int var3 = false;
+      var4 = "Hi Kotlin";
+      var5 = false;
+      System.out.println(var4);
+      action2$iv.invoke();
+   } catch (Throwable var6) {
+      var4 = "Caught error: " + var6.getMessage();
+      var5 = false;
+      System.out.println(var4);
+   }
+
+}
+```
+
+인라인 및 noinline을 사용하면 컴파일러가 고차 함수에 대해 정의한 함수 매개변수를 처리하는 방법을 제어할 수 있습니다. IntelliJ 기반 IDE는 인라인 함수의 성능에 미치는 영향이 무시할 수 있을 때 경고합니다.
