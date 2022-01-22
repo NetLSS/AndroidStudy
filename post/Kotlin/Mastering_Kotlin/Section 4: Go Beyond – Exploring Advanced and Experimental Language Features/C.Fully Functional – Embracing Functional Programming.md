@@ -624,3 +624,64 @@ println(firstK)
 ```
 
 이러한 기능을 통해 컬렉션 내의 항목을 쉽게 쿼리하고 현재 사용 사례에 맞는 항목을 검색할 수 있습니다.
+
+## Exploring other useful functions
+
+코틀린 표준 라이브러리는 단순히 컬렉션을 조작하는 기능 외에도 여러 가지 유용한 기능을 제공합니다. 이러한 기능을 통해 코드를 보다 간결하고 읽기 쉬우며 안전하게 만드는 몇 가지 예를 살펴보겠습니다.
+
+이러한 함수 중 하나는 NullOrEpty()입니다. 이렇게 하면 컬렉션이 null인지 아니면 비어 있는지 편리하게 확인할 수 있습니다.
+
+```kt
+if (list.isNullOrEmpty()) {
+    // handle empty case
+}
+```
+
+이를 통해 표준 기능을 사용하여 일반적인 에지(edge) 케이스를 처리할 수 있습니다.
+
+컬렉션이 null 이지만 null 컬렉션보다는 빈 컬렉션에서 작업하려는 경우 Kotlin 표준 라이브러리는 선택한 빈 컬렉션을 검색하는 기능을 제공합니다.
+
+```kt
+val emptyList = emptyList<String>()
+val emptyMap = emptyMap<String, Int>()
+val emptyArray = emptyArray<String>()
+```
+
+이 작업은 널(null) 컬렉션 유형을 사용하여 수행할 수도 있습니다. 집합에서 orEmpty() 함수를 사용하여 Null이 아닌 현재 값이나 기본 빈 집합을 대신 반환할 수 있습니다.
+
+```kt
+var possiblyNullList: List<String>? = null
+var nonNullList = possiblyNullList.orEmpty()
+```
+
+코틀린 표준 라이브러리는 문자열 종류 작업을 위한 다양한 편의 기능도 제공합니다. 특히 문자열이 null인지, 공백인지 또는 비어 있는지 확인하는 여러 함수가 있습니다.
+
+```kt
+val string: String? = null
+if (string.isNullOrBlank()) {
+    // handle edge cases
+}
+if (string.isNullOrEmpty()) {
+    // handle edge cases
+}
+if (string?.isEmpty() == true) {
+    // handle empty string
+}
+if (string?.isNotBlank() == true) {
+    // handle non-blank string
+}
+
+println("${null == true}") // false
+println("${null == false}") // flase
+```
+
+이러한 기능은 코드 베이스에서 null을 최대한 제거할 때 유용합니다.
+
+또한 문자열 유형에는 null이 아닌 현재 문자열 값 또는 기본 빈 문자열을 반환하는 데 사용할 수 있는 orEmpty() 함수가 있습니다.
+
+```kt
+var possiblyNullString: String? = null
+var nonNullString = possiblyNullString.orEmpty()
+```
+
+Kotlin 표준 라이브러리는 문자열, 컬렉션, 배열, 숫자 유형 등을 사용하는 데 많은 유용한 기능을 제공합니다. 이러한 기능을 활용함으로써, 우리는 더 적은 부작용, 더 높은 가독성, 더 적은 코드로 더 많은 기능성 코드를 작성하기 시작할 수 있습니다.
