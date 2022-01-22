@@ -549,3 +549,27 @@ Kotlin Programming Language
 ```
 
 map() 함수는 데이터 흐름의 특성을 변경하거나 여러 값을 알려진 값 또는 유형의 집합에 매핑할 수 있기 때문에 매우 강력합니다.
+
+## Associating
+
+때때로 값의 모음을 다른 값과 연결하려고 합니다. 이를 위한 한 가지 방법은 연관 함수를 사용하는 것입니다. associate()를 사용하면 컬렉션의 각 값을 원하는 유형의 쌍에 매핑한 다음 결과 맵을 저장할 수 있습니다.
+
+이 예에서는 각 문자열을 그 길이로 매핑한 다음 맵의 모든 쌍에 반복하여 인쇄합니다.
+
+```kt
+list.associate { it to it.length } // Map 반환 
+    .forEach {
+        println("${it.key} has ${it.value} letters")
+    }
+```
+
+이 코드를 실행하면 다음과 같은 출력이 발생합니다.
+
+```kt
+Kotlin has 6 letters
+Java has 4 letters
+Swift has 5 letters
+K has 1 letters
+```
+
+연관() 함수는 입력 컬렉션을 기반으로 관련 값 맵을 만드는 데 필요한 작업을 크게 간소화합니다.
