@@ -573,3 +573,54 @@ K has 1 letters
 ```
 
 연관() 함수는 입력 컬렉션을 기반으로 관련 값 맵을 만드는 데 필요한 작업을 크게 간소화합니다.
+
+## Searching
+
+코틀린 표준 라이브러리는 컬렉션 중에서 물건을 고를 수 있는 다양한 기능을 제공합니다. 여기에는 find(), first() 및 last()와 같은 함수가 포함됩니다. 다음 몇 가지 기능을 살펴보겠습니다.
+
+first() 함수를 사용하여 다음 예를 살펴보겠습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+val item = list.first()
+println(item)
+```
+
+이 코드를 실행하면 "Kotlin"이 인쇄됩니다.
+
+또는 last() 함수를 사용할 수 있습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+val item = list.last()
+println(item)
+```
+
+이번에는 코드가 "K"를 출력합니다.
+
+컬렉션에서 하나 이상의 항목을 가져오려면 어떻게 해야 할까요? 이를 위해 take() 함수를 사용할 수 있습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+list.take(2).forEach { println(it) }
+```
+
+이 예에서는 목록에서 처음 두 항목을 take하기 위해 take(2)를 호출했습니다. 그런 다음 해당 항목을 출력하면 다음과 같은 결과가 나옵니다.
+
+findLast() 함수를 사용하여 주어진 술어와 일치하는 컬렉션의 마지막 요소를 검색할 수 있습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+val lastK = list.findLast { it.contains("K") }
+println(lastK)
+```
+
+또는, 우리가 지정된 조건자와 일치하는 컬렉션의 첫번째 요소를 검색하는 데:find()사용할 수 있다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+val firstK = list.find { it.contains("K") }
+println(firstK)
+```
+
+이러한 기능을 통해 컬렉션 내의 항목을 쉽게 쿼리하고 현재 사용 사례에 맞는 항목을 검색할 수 있습니다.
