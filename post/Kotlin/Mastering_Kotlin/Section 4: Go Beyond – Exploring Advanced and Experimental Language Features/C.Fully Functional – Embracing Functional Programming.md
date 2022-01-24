@@ -233,3 +233,455 @@ LoadingViewModel {
 ## Improving the performance of higher-order functions
 
 고차 함수는 상당히 유용할 수 있습니다. 하지만, 그들의 효용은 공짜가 아닙니다. 고차 함수 사용에 따른 간접비가 발생합니다. 이는 컴파일러 수준에서 고차 함수가 작동하는 방식에서 기인합니다. 이 섹션에서는 인라인 및 노라인 한정자를 통해 고차 함수의 성능 특성을 제어할 수 있는 방법에 대해 살펴보겠습니다.
+
+## The inline modifier
+
+우리가 고차 함수의 성능을 제어할 수 있는 한 가지 방법은 인라인 한정자 키워드를 사용하는 것입니다. 인라인 한정자를 사용하면 컴파일러에게 함수의 구현이 콜 사이트에서 인라인될 수 있음을 알려줌으로써 고차 함수의 성능을 향상시킬 수 있으므로 고차 함수의 변수 캡처 및 클래스 인스턴스화와 관련된 성능 오버헤드를 피할 수 있습니다.
+
+이 기능의 작동 방식을 살펴보려면 먼저 이 기능을 정의한 다음 안전하게 실행:
+
+```kt
+fun safelyRun(action: () -> Unit) {
+    try {
+        action()
+    } catch (error: Throwable) {
+        println("Caught error: ${error.message}")
+    }
+}
+```
+
+이것은 try/catch 블록으로 호출을 래핑하면서 람다가 전달되는 모든 것을 실행하는 최상위 고차 함수입니다. 함수 매개 변수를 사용하는 것으로 정의되지만 컴파일러 수준에서는 함수 0 클래스의 인스턴스가 필요합니다.
+
+```java
+public static final void safelyRun(@NotNull Function0 action) {
+   Intrinsics.checkParameterIsNotNull(action, "action");
+
+   try {
+      action.invoke();
+   } catch (Throwable var4) {
+      String var2 = "Caught error: " + var4.getMessage();
+      boolean var3 = false;
+      System.out.println(var2);
+   }
+
+}
+```
+
+Function0 클래스는 람다 내에서 해당 값에 액세스할 수 있도록 람다 내에서 참조되는 모든 변수를 캡처합니다.
+
+따라서 안전하게 실행() 기능을 사용하면 다음과 같습니다.
+
+```kt
+fun main() {
+    val greeting = "Hello"
+    safelyRun {
+        println("$greeting Kotlin")
+    }
+}
+```
+
+컴파일러는 다음과 같은 코드를 생성합니다.
+
+```java
+public static final void main() {
+   final String greeting = "Hello";
+   safelyRun((Function0)(new Function0() {
+      // $FF: synthetic method
+      // $FF: bridge method
+      public Object invoke() {
+         this.invoke();
+         return Unit.INSTANCE;
+      }
+
+      public final void invoke() {
+         String var1 = greeting + " Kotlin";
+         boolean var2 = false;
+         System.out.println(var1);
+      }
+   }));
+}
+```
+
+safeRun()을 호출할 때 외부 클래스와 해당 필드에 대한 암시적 참조가 있는 익명 내부 클래스가 생성됩니다. 이것은 람다가 속성이나 지역 변수와 같은 모든 필수 상태를 캡처할 수 있는 방법입니다. 이 익명 내부 클래스는 람다가 평가될 때마다 인스턴스화됩니다.
+
+고차 함수가 대규모 수집에서 작동하는 경우, 예를 들어 람다 상태 캡처와 관련된 오버헤드가 루프의 각 반복에 대해 지불되므로 더 많은 양의 메모리와 더 많은 수의 가상 메서드 호출이 필요합니다.
+
+다행히 인라인 키워드를 활용하면 이러한 오버헤드를 방지할 수 있습니다. 인라인 함수를 고차 함수에 추가함으로써 컴파일러에게 주어진 함수의 호출을 호출 사이트에서 해당 함수의 실제 구현으로 대체하도록 지시합니다. 예를 업데이트하여 이를 설명하겠습니다.
+
+먼저 다음과 같이 인라인 키워드를 safeRun() 함수에 추가합니다.
+
+```kt
+inline fun safelyRun(action: () -> Unit) {
+    try {
+        action()
+    } catch (error: Throwable) {
+        println("Caught error: ${error.message}")
+    }
+}
+```
+
+이제 생성된 코드를 살펴보면 인라인 추가의 영향을 알 수 있습니다.
+
+```java
+public static final void main() {
+   String greeting = "Hello";
+   boolean var1 = false;
+
+   try {
+      int var7 = false;
+      String var8 = greeting + " Kotlin";
+      boolean var4 = false;
+      System.out.println(var8);
+   } catch (Throwable var6) {
+      String var2 = "Caught error: " + var6.getMessage();
+      boolean var3 = false;
+      System.out.println(var2);
+   }
+
+}
+```
+
+safeRun()의 본문이 main()의 본문으로 다시 작성되었습니다. 이렇게 하면 main()에 정의된 인사말 변수를 캡처하기 위해 Function0의 새 인스턴스를 만들 필요가 없습니다. safeRun()을 호출할 때마다 Function0 인스턴스를 생성할 필요가 없으므로 코드의 성능이 향상되었습니다.
+
+## The noinline modifier
+
+인라인 한정자를 고차 함수에 추가하면 전달된 모든 람다는 콜 사이트에서 인라인 상태가 됩니다. 하지만 이것이 당신이 원하지 않는 경우가 있을 수 있습니다. 이러한 상황에서 우리는 노라인을 활용할 수 있습니다.
+
+우리는 우리의 고차 함수의 함수 파라미터에 noinline 수식어를 추가할 수 있습니다. 이것은 컴파일러에게 특정 람다를 인라인으로 만들지 않도록 지시합니다. 이전 예제를 사용하여 이에 대해 살펴보겠습니다.
+
+1. 두 번째 함수 매개변수를 safeRun()에 추가합니다.
+
+```kt
+inline fun safelyRun(action: () -> Unit, action2:() -> Unit) {
+    try {
+        action()
+        action2()
+    } catch (error: Throwable) {
+        println("Caught error: ${error.message}")
+    }
+}
+```
+
+2. 이제 두 번째 람다를 통과하도록 사용방식을 업데이트하겠습니다.
+
+```kt
+fun main() {
+    val greeting = "Hello"
+    safelyRun({ println("Hi Kotlin")}) {
+        println("$greeting Kotlin")
+    }
+}
+```
+
+3. 생성된 코드를 살펴보면 이전과 매우 비슷하다는 것을 알 수 있습니다. 콜 사이트에서 lamda 두 개가 모두 인라인으로 표시됩니다.
+
+```java
+public static final void main() {
+   String greeting = "Hello";
+   boolean var1 = false;
+
+   try {
+      int var7 = false;
+      String var8 = "Hi Kotlin";
+      boolean var4 = false;
+      System.out.println(var8);
+      var7 = false;
+      var8 = greeting + " Kotlin";
+      var4 = false;
+      System.out.println(var8);
+   } catch (Throwable var6) {
+      String var2 = "Caught error: " + var6.getMessage();
+      boolean var3 = false;
+      System.out.println(var2);
+   }
+
+}
+```
+
+4. 이제 action2 매개 변수에 noinline을 추가하겠습니다.
+
+```kt
+inline fun safelyRun(action: () -> Unit, noinline action2:() -> Unit) {
+    ...
+}
+```
+
+5. 이제 생성된 코드는 두 번째 람다를 인라인으로 만들지 않고 대신 함수0 인스턴스를 생성하여 람다에 필요한 로컬 상태를 캡처합니다.
+
+```java
+public static final void main() {
+   final String greeting = "Hello";
+   Function0 action2$iv = (Function0)(new Function0() {
+      // $FF: synthetic method
+      // $FF: bridge method
+      public Object invoke() {
+         this.invoke();
+         return Unit.INSTANCE;
+      }
+
+      public final void invoke() {
+         String var1 = greeting + " Kotlin";
+         boolean var2 = false;
+         System.out.println(var1);
+      }
+   });
+   boolean var2 = false;
+
+   String var4;
+   boolean var5;
+   try {
+      int var3 = false;
+      var4 = "Hi Kotlin";
+      var5 = false;
+      System.out.println(var4);
+      action2$iv.invoke();
+   } catch (Throwable var6) {
+      var4 = "Caught error: " + var6.getMessage();
+      var5 = false;
+      System.out.println(var4);
+   }
+
+}
+```
+
+인라인 및 noinline을 사용하면 컴파일러가 고차 함수에 대해 정의한 함수 매개변수를 처리하는 방법을 제어할 수 있습니다. IntelliJ 기반 IDE는 인라인 함수의 성능에 미치는 영향이 무시할 수 있을 때 경고합니다.
+
+## Leveraging the standard library
+
+코틀린 표준 라이브러리은 매우 다양한 유용한 기능을 제공합니다. 이러한 기능을 통해 바퀴를 재창조할 필요 없이 더 많은 기능 코드를 작성할 수 있습니다. 이 섹션에서는 Kotlin 표준 라이브러리를 활용하여 달성할 수 있는 몇 가지 일반적인 기능 패턴에 대해 살펴보겠습니다.
+
+### Manipulating collections
+
+이 책 전반에 걸쳐, 우리는 우리의 예시 안에서 컬렉션을 사용해 왔습니다. Kotlin 표준 라이브러리는 공통 컬렉션 유형을 매우 쉽게 만들 수 있는 도우미 기능을 제공합니다.
+
+```kt
+fun main() {
+    val list = listOf("Kotlin", "Java", "Swift")
+    val mutableList = mutableListOf("Kotlin", "Java", "Swift")
+    val arrayList = arrayListOf("Kotlin", "Java", "Swift")
+    val array = arrayOf("Kotlin", "Java", "Swift")
+    val map = mapOf("Kotlin" to 1, "Java" to 2, "Swift" to 3)
+}
+```
+
+Kotlin 표준 라이브러리는 이러한 컬렉션 유형을 만든 후 작업할 수 있는 다양한 기능을 제공합니다. 필터, 매핑, 축소, 찾기 등의 작업을 통해 적은 코드로 복잡한 작업을 수행할 수 있는 강력한 기능 체인을 작성할 수 있습니다.
+
+이 섹션에서는 이러한 기능 중 몇 가지와 코틀린 표준 라이브러리의 활용 방법에 대해 살펴보겠습니다.
+
+### Filtering
+
+먼저 필터() 기능을 살펴보겠습니다. 필터() 함수를 사용하면 람다를 제공할 수 있습니다. 람다는 컬렉션에서 항목을 필터링하는 데 사용되는 부울을 반환합니다.
+
+이 예에서는 필터 기능을 사용하여 문자 "K"로 시작하는 항목만 인쇄합니다.
+
+```kt
+fun main() {
+    ...
+
+    val list = listOf("Kotlin", "Java", "Swift")
+    list.filter { it.startsWith("K") }
+        .forEach { println(it) }
+}
+```
+
+이 예에서는 먼저 항목을 필터링한 다음 하나씩 반복하여 인쇄하는 기능을 함께 결합하는 방법을 살펴보십시오. 이러한 패턴을 통해 보다 복잡한 방식으로 이러한 작업을 연결할 수 있습니다.
+
+## Mapping
+
+다음에는 한 값을 다른 값에 매핑하는 방법에 대해 알아보겠습니다. 문자열 "코틀린"을 해당하는 데이터 유형에 매핑해 보겠습니다.
+
+먼저 프로그래밍 언어를 나타내는 밀봉된 클래스를 만듭니다.
+
+```kt
+sealed class ProgrammingLanguage(protected val name: String) {
+    object Kotlin : ProgrammingLanguage("Kotlin")
+    object Java : ProgrammingLanguage("Java")
+    object Swift : ProgrammingLanguage("Swift")
+
+    override fun toString(): String {
+        return "$name Programming Language"
+    }
+}
+```
+
+다음으로 맵() 함수에 호출을 추가하여 String 항목을 해당 언어로 매핑할 수 있습니다. map 연산자를 통해 결과 유형을 수신 데이터 유형에서 원하는 송신 데이터 유형으로 변경할 수 있습니다. 이 경우 String에서 ProgrammingLanguage로 매핑합니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+list.filter { it.startsWith("K") }
+    .map {
+        when (it) {
+            "Kotlin" -> ProgrammingLanguage.Kotlin
+            else -> null
+        }
+    }
+    .forEach { println(it) }
+```
+
+이 기능을 실행하면 다음과 같은 출력이 나옵니다.
+
+```
+Kotlin Programming Language
+null
+```
+
+문자열 "K"를 ProgrammingLanguage에 매핑하여 null을 반환할 수 없으므로 콘솔에 null이 인쇄된 것을 볼 수 있습니다.
+
+이 문제를 해결하기 위해 다른 함수인 filterNotNull()을 사용하여 null이 아닌 값을 필터링할 수 있습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+list.filter { it.startsWith("K") }
+    .map {
+        when (it) {
+            "Kotlin" -> ProgrammingLanguage.Kotlin
+            else -> null
+        }
+    }
+    .filterNotNull()
+    .forEach { println(it) }
+```
+
+이제 이 코드를 실행하면 Null이 아닌 값만 표시됩니다.
+
+```
+Kotlin Programming Language
+```
+
+map() 함수는 데이터 흐름의 특성을 변경하거나 여러 값을 알려진 값 또는 유형의 집합에 매핑할 수 있기 때문에 매우 강력합니다.
+
+## Associating
+
+때때로 값의 모음을 다른 값과 연결하려고 합니다. 이를 위한 한 가지 방법은 연관 함수를 사용하는 것입니다. associate()를 사용하면 컬렉션의 각 값을 원하는 유형의 쌍에 매핑한 다음 결과 맵을 저장할 수 있습니다.
+
+이 예에서는 각 문자열을 그 길이로 매핑한 다음 맵의 모든 쌍에 반복하여 인쇄합니다.
+
+```kt
+list.associate { it to it.length } // Map 반환 
+    .forEach {
+        println("${it.key} has ${it.value} letters")
+    }
+```
+
+이 코드를 실행하면 다음과 같은 출력이 발생합니다.
+
+```kt
+Kotlin has 6 letters
+Java has 4 letters
+Swift has 5 letters
+K has 1 letters
+```
+
+연관() 함수는 입력 컬렉션을 기반으로 관련 값 맵을 만드는 데 필요한 작업을 크게 간소화합니다.
+
+## Searching
+
+코틀린 표준 라이브러리는 컬렉션 중에서 물건을 고를 수 있는 다양한 기능을 제공합니다. 여기에는 find(), first() 및 last()와 같은 함수가 포함됩니다. 다음 몇 가지 기능을 살펴보겠습니다.
+
+first() 함수를 사용하여 다음 예를 살펴보겠습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+val item = list.first()
+println(item)
+```
+
+이 코드를 실행하면 "Kotlin"이 인쇄됩니다.
+
+또는 last() 함수를 사용할 수 있습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+val item = list.last()
+println(item)
+```
+
+이번에는 코드가 "K"를 출력합니다.
+
+컬렉션에서 하나 이상의 항목을 가져오려면 어떻게 해야 할까요? 이를 위해 take() 함수를 사용할 수 있습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+list.take(2).forEach { println(it) }
+```
+
+이 예에서는 목록에서 처음 두 항목을 take하기 위해 take(2)를 호출했습니다. 그런 다음 해당 항목을 출력하면 다음과 같은 결과가 나옵니다.
+
+findLast() 함수를 사용하여 주어진 술어와 일치하는 컬렉션의 마지막 요소를 검색할 수 있습니다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+val lastK = list.findLast { it.contains("K") }
+println(lastK)
+```
+
+또는, 우리가 지정된 조건자와 일치하는 컬렉션의 첫번째 요소를 검색하는 데:find()사용할 수 있다.
+
+```kt
+val list = listOf("Kotlin", "Java", "Swift", "K")
+val firstK = list.find { it.contains("K") }
+println(firstK)
+```
+
+이러한 기능을 통해 컬렉션 내의 항목을 쉽게 쿼리하고 현재 사용 사례에 맞는 항목을 검색할 수 있습니다.
+
+## Exploring other useful functions
+
+코틀린 표준 라이브러리는 단순히 컬렉션을 조작하는 기능 외에도 여러 가지 유용한 기능을 제공합니다. 이러한 기능을 통해 코드를 보다 간결하고 읽기 쉬우며 안전하게 만드는 몇 가지 예를 살펴보겠습니다.
+
+이러한 함수 중 하나는 NullOrEpty()입니다. 이렇게 하면 컬렉션이 null인지 아니면 비어 있는지 편리하게 확인할 수 있습니다.
+
+```kt
+if (list.isNullOrEmpty()) {
+    // handle empty case
+}
+```
+
+이를 통해 표준 기능을 사용하여 일반적인 에지(edge) 케이스를 처리할 수 있습니다.
+
+컬렉션이 null 이지만 null 컬렉션보다는 빈 컬렉션에서 작업하려는 경우 Kotlin 표준 라이브러리는 선택한 빈 컬렉션을 검색하는 기능을 제공합니다.
+
+```kt
+val emptyList = emptyList<String>()
+val emptyMap = emptyMap<String, Int>()
+val emptyArray = emptyArray<String>()
+```
+
+이 작업은 널(null) 컬렉션 유형을 사용하여 수행할 수도 있습니다. 집합에서 orEmpty() 함수를 사용하여 Null이 아닌 현재 값이나 기본 빈 집합을 대신 반환할 수 있습니다.
+
+```kt
+var possiblyNullList: List<String>? = null
+var nonNullList = possiblyNullList.orEmpty()
+```
+
+코틀린 표준 라이브러리는 문자열 종류 작업을 위한 다양한 편의 기능도 제공합니다. 특히 문자열이 null인지, 공백인지 또는 비어 있는지 확인하는 여러 함수가 있습니다.
+
+```kt
+val string: String? = null
+if (string.isNullOrBlank()) {
+    // handle edge cases
+}
+if (string.isNullOrEmpty()) {
+    // handle edge cases
+}
+if (string?.isEmpty() == true) {
+    // handle empty string
+}
+if (string?.isNotBlank() == true) {
+    // handle non-blank string
+}
+
+println("${null == true}") // false
+println("${null == false}") // flase
+```
+
+이러한 기능은 코드 베이스에서 null을 최대한 제거할 때 유용합니다.
+
+또한 문자열 유형에는 null이 아닌 현재 문자열 값 또는 기본 빈 문자열을 반환하는 데 사용할 수 있는 orEmpty() 함수가 있습니다.
+
+```kt
+var possiblyNullString: String? = null
+var nonNullString = possiblyNullString.orEmpty()
+```
+
+Kotlin 표준 라이브러리는 문자열, 컬렉션, 배열, 숫자 유형 등을 사용하는 데 많은 유용한 기능을 제공합니다. 이러한 기능을 활용함으로써, 우리는 더 적은 부작용, 더 높은 가독성, 더 적은 코드로 더 많은 기능성 코드를 작성하기 시작할 수 있습니다.
