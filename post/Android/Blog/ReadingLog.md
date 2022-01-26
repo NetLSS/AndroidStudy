@@ -179,6 +179,9 @@ with @ebayKorea
 - 2022-01-18
   - [[안드로이드] Switch to the Play Referrer API by March 1, 2020](https://hjlab.tistory.com/423)
   - [[용어 정리 #4] Android Install Referrer API](https://kibua20.tistory.com/27)
+- 2022-01-24
+  - [android-sdk-install-system-image-packages-offline](https://stackoverflow.com/questions/36501550/android-sdk-install-system-image-packages-offline)
+  - [(android)greenrobot - EventBus](https://no-dev-nk.tistory.com/19)
 # Lazy List
 
 
