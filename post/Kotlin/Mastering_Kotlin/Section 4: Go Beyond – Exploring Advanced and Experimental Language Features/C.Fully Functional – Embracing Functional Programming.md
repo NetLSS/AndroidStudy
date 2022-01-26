@@ -685,3 +685,29 @@ var nonNullString = possiblyNullString.orEmpty()
 ```
 
 Kotlin 표준 라이브러리는 문자열, 컬렉션, 배열, 숫자 유형 등을 사용하는 데 많은 유용한 기능을 제공합니다. 이러한 기능을 활용함으로써, 우리는 더 적은 부작용, 더 높은 가독성, 더 적은 코드로 더 많은 기능성 코드를 작성하기 시작할 수 있습니다.
+
+## Functional programming with Arrow
+
+고차 함수를 사용하고 표준 라이브러리를 활용하면 Kotlin으로 더 많은 기능 코드를 작성하는 데 도움이 될 수 있습니다. 그러나 이는 순수 기능 코드를 작성하기 위한 첫 단계일 뿐입니다. 이 섹션에서는 Arrow 라이브러리를 살펴보고 이 라이브러리를 통해 보다 순수하게 기능적인 Kotlin 코드를 작성하는 방법에 대해 알아보겠습니다.
+
+## What is Arrow?
+
+애로는 코틀린에서 타이핑된 기능성 프로그래밍을 위한 오픈 소스 라이브러리입니다. 코틀린과 함께 순수 함수 프로그래밍을 달성하기 위한 공통 구문과 기능을 제공하는 것을 목표로 합니다. 여기에는 다음과 같은 추상화, 인터페이스 및 클래스가 포함됩니다.
+
+- Functor
+- Applicative
+- Monad
+- Option
+- Try
+- Either
+- Eval 
+
+> For additional information about Arrow, refer to the official Arrow documentation: https://arrow-kt.io/.
+
+화살표를 기존의 객체 지향 명령 코드와 함께 사용할 수 있으며, 응용프로그램에서 들어오고 나가는 데이터 변환과 같은 특정 장소에서 사용할 수 있습니다.
+
+애로가 제공하는 3가지 주요 추상화 유형에 대해 살펴보겠습니다.
+
+- Typeclasses
+- Data types
+- Effects
