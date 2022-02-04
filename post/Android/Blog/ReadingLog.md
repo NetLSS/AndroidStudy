@@ -182,6 +182,8 @@ with @ebayKorea
 - 2022-01-24
   - [android-sdk-install-system-image-packages-offline](https://stackoverflow.com/questions/36501550/android-sdk-install-system-image-packages-offline)
   - [(android)greenrobot - EventBus](https://no-dev-nk.tistory.com/19)
+- 2022-02-04
+  - [getting-screen-width-on-api-level-30-android-11-getdefaultdisplay-and-getme](https://stackoverflow.com/questions/63407883/getting-screen-width-on-api-level-30-android-11-getdefaultdisplay-and-getme)
 # Lazy List
 
 
