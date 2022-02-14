@@ -185,6 +185,10 @@ with @ebayKorea
 - 2022-02-04
   - [getting-screen-width-on-api-level-30-android-11-getdefaultdisplay-and-getme](https://stackoverflow.com/questions/63407883/getting-screen-width-on-api-level-30-android-11-getdefaultdisplay-and-getme)
   - [how-to-set-androidlayout-weight-and-androidlayout-width-in-code](https://stackoverflow.com/questions/7378896/how-to-set-androidlayout-weight-and-androidlayout-width-in-code)
+- 2022-02-08
+  - [how-to-make-inappropriate-blocking-method-call-appropriate](https://stackoverflow.com/questions/58680028/how-to-make-inappropriate-blocking-method-call-appropriate)
+  - [android Webivew에서 새창 띄우기](https://ibks-platform.tistory.com/80)
+
 # Lazy List
 
 
