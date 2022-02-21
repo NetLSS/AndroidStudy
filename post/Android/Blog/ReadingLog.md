@@ -190,7 +190,11 @@ with @ebayKorea
   - [android Webivew에서 새창 띄우기](https://ibks-platform.tistory.com/80)
 - 2022-02-17
   - [[Coroutine Flow] 1. Flow란 무엇인가?](https://kotlinworld.com/175#Coroutine%--Flow%EB%A-%BC%--%EC%-D%B-%EC%-A%A-%ED%--%-C%--%EB%A-%AC%EC%--%A-%ED%-B%B-%EB%B-%-C%--%ED%--%--%EB%A-%-C%EA%B-%B-%EB%-E%--%EB%B-%-D)
-
+  - [[안드로이드] 앱 삭제 했는데 데이터가 남아 있는 문제](https://m.blog.naver.com/netrance/221224761858)
+- 2022-02-21
+  - [안드로이드 개발 (5) - 메모리 누수](https://gift123.tistory.com/30)
+  - [how-to-replace-top-fragment](https://stackoverflow.com/questions/54208016/how-to-replace-top-fragment)
+  - [popbackstack-causing-java-lang-illegalstateexception-can-not-perform-this-actio](https://stackoverflow.com/questions/53566847/popbackstack-causing-java-lang-illegalstateexception-can-not-perform-this-actio)
 # Lazy List
 
 
@@ -198,3 +202,4 @@ with @ebayKorea
   - [Modern Android development with Kotlin Part 4](https://proandroiddev.com/modern-android-development-with-kotlin-part-4-4ac18e9868cb)
 - [놓치기 쉬운 안드로이드 UI 디테일 살펴보기](https://fornewid.medium.com/%EB%86%93%EC%B9%98%EA%B8%B0-%EC%89%AC%EC%9A%B4-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-ui-%EB%94%94%ED%85%8C%EC%9D%BC-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0-5e5f98c836af)
 - [Kotlin Flow 및 LiveData를 사용한 고급 코루틴 알아보기](https://developer.android.google.cn/codelabs/advanced-kotlin-coroutines?hl=ko#0)
+- [android TextView 속성](https://recipes4dev.tistory.com/94)
