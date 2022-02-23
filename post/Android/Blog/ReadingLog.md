@@ -195,6 +195,12 @@ with @ebayKorea
   - [안드로이드 개발 (5) - 메모리 누수](https://gift123.tistory.com/30)
   - [how-to-replace-top-fragment](https://stackoverflow.com/questions/54208016/how-to-replace-top-fragment)
   - [popbackstack-causing-java-lang-illegalstateexception-can-not-perform-this-actio](https://stackoverflow.com/questions/53566847/popbackstack-causing-java-lang-illegalstateexception-can-not-perform-this-actio)
+- 2022-02-23
+  - [android-pie-9-0-webview-in-multi-process](https://stackoverflow.com/questions/51843546/android-pie-9-0-webview-in-multi-process)
+  - [[이슈] sing WebView from more than one process at once with the same data directory...](https://faith-developer.tistory.com/207)
+  - [huawei-devices-the-meta-data-tag-in-your-apps-androidmanifest-xml-does-not-hav](https://stackoverflow.com/questions/56397850/huawei-devices-the-meta-data-tag-in-your-apps-androidmanifest-xml-does-not-hav)
+    - `Caused by: java.lang.IllegalStateException: The meta-data tag in your app's AndroidManifest.xml does not have the right value. Expected 12451000 but found 4323000.  You must have the following declaration within the element:`
+  - [google-play-services_lib 업데이트 후, 죽는 문제](https://mydevromance.tistory.com/32)
 # Lazy List
 
 
