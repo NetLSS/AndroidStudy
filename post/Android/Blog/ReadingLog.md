@@ -201,6 +201,8 @@ with @ebayKorea
   - [huawei-devices-the-meta-data-tag-in-your-apps-androidmanifest-xml-does-not-hav](https://stackoverflow.com/questions/56397850/huawei-devices-the-meta-data-tag-in-your-apps-androidmanifest-xml-does-not-hav)
     - `Caused by: java.lang.IllegalStateException: The meta-data tag in your app's AndroidManifest.xml does not have the right value. Expected 12451000 but found 4323000.  You must have the following declaration within the element:`
   - [google-play-services_lib 업데이트 후, 죽는 문제](https://mydevromance.tistory.com/32)
+- 2022-02-25
+  - [Remove-kotlinx-synthetic/](https://thdev.tech/android/2020/10/07/Remove-kotlinx-synthetic/)
 # Lazy List
 
 
