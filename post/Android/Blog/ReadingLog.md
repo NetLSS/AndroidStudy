@@ -203,7 +203,8 @@ with @ebayKorea
   - [google-play-services_lib 업데이트 후, 죽는 문제](https://mydevromance.tistory.com/32)
 - 2022-02-25
   - [Remove-kotlinx-synthetic/](https://thdev.tech/android/2020/10/07/Remove-kotlinx-synthetic/)
-  - 
+- 2022-03-30
+  - [[Android] Fragment의 생명주기(Life Cycle)과 onActivityCreated() deprecated 대응하기](https://show-me-the-money.tistory.com/entry/Android-Fragment%EC%9D%98-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0Life-Cycle%EA%B3%BC-onActivityCreated-deprecated-%EB%8C%80%EC%9D%91%ED%95%98%EA%B8%B0)
 # Lazy List
 
 
