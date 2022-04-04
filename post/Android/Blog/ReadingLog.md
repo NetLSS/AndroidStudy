@@ -207,6 +207,8 @@ with @ebayKorea
   - [[Android] Fragment의 생명주기(Life Cycle)과 onActivityCreated() deprecated 대응하기](https://show-me-the-money.tistory.com/entry/Android-Fragment%EC%9D%98-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0Life-Cycle%EA%B3%BC-onActivityCreated-deprecated-%EB%8C%80%EC%9D%91%ED%95%98%EA%B8%B0)
 - 2022-04-01
   - [Constraint Layout – Part1. 만능 레이아웃](https://www.charlezz.com/?p=669)
+- 2022-04-04
+  - [Github Label, Issue, Pull Request Template 적용하기 - velog](https://velog.io/@modolee/github-initial-settings)
 # Lazy List
 
 
