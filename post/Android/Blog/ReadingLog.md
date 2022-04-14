@@ -209,6 +209,8 @@ with @ebayKorea
   - [Constraint Layout – Part1. 만능 레이아웃](https://www.charlezz.com/?p=669)
 - 2022-04-04
   - [Github Label, Issue, Pull Request Template 적용하기 - velog](https://velog.io/@modolee/github-initial-settings)
+- 2022-04-07
+  - [Dagger 2 Inject Context in Kotlin Object](https://stackoverflow.com/questions/59509103/dagger-2-inject-context-in-kotlin-object)
 # Lazy List
 
 
