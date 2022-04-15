@@ -14,9 +14,11 @@
 - 안드로이드 하드웨어 서비스
 - Mastering Kotlin
 - 안드로이드 스튜디오 Arctic Fox & 프로그래밍
+- 이펙티브 코틀린
 
 ## 수강중인 강의들
 
 - 30개 프로젝트로 배우는 Android 앱 개발 with Kotlin 초격차 패키지 Online.
+- 모던 안드로이드 - Jetpack Compose
 
 x
