@@ -211,6 +211,10 @@ with @ebayKorea
   - [Github Label, Issue, Pull Request Template 적용하기 - velog](https://velog.io/@modolee/github-initial-settings)
 - 2022-04-07
   - [Dagger 2 Inject Context in Kotlin Object](https://stackoverflow.com/questions/59509103/dagger-2-inject-context-in-kotlin-object)
+- 2022-04-15
+  - [[Android Compose State] State Hoisting(상태 호이스팅) 패턴이란 무엇인가?](https://kotlinworld.com/244)
+
+
 # Lazy List
 
 
