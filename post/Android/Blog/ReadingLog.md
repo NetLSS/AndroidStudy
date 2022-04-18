@@ -213,6 +213,8 @@ with @ebayKorea
   - [Dagger 2 Inject Context in Kotlin Object](https://stackoverflow.com/questions/59509103/dagger-2-inject-context-in-kotlin-object)
 - 2022-04-15
   - [[Android Compose State] State Hoisting(상태 호이스팅) 패턴이란 무엇인가?](https://kotlinworld.com/244)
+- 2022-04-18
+  - [2022 안드로이드 개발자 로드맵 — Part1](https://velog.io/@skydoves/2022-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EB%A1%9C%EB%93%9C%EB%A7%B5-Part1)
 
 
 # Lazy List
