@@ -226,6 +226,7 @@ with @ebayKorea
   - [SavedStateHandle을 다뤄봅니다](https://pluu.github.io/blog/android/2020/02/20/savedstatehandle/)
   - [SavedState 어떻게 저장되고 복원될까?](https://pluu.github.io/blog/android/2020/03/15/savedstate-flow/)
   - [ViewModel의 B에서 D까지](https://pluu.github.io/blog/android/2020/05/04/viewmodel-b-to-d/)
+  - [[Android] LiveData setValue() vs postValue()](https://leveloper.tistory.com/179)
 
 # Lazy List
 
