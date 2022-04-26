@@ -219,7 +219,13 @@ with @ebayKorea
   - [vs-code-live-share-pair-coding](https://dev.classmethod.jp/articles/vs-code-live-share-pair-coding/)
 - 2022-04-25
   - [Android 호환성 유지에 대한 고찰 ~ 언어편](https://pluu.github.io/blog/android/2021/01/27/compatibility-language/)
-
+  - [[Agile] 짝 프로그래밍(Pair Programming)이란](https://gmlwjd9405.github.io/2018/07/02/agile-pair-programming.html)
+- 2022-04-26
+  - [Android 상태 저장의 기본에서 Savedstate까지](https://pluu.github.io/blog/android/2020/02/10/saved-state/)
+  - [SavedState is Default](https://pluu.github.io/blog/android/2020/02/15/diff-androidx-lifecycle/)
+  - [SavedStateHandle을 다뤄봅니다](https://pluu.github.io/blog/android/2020/02/20/savedstatehandle/)
+  - [SavedState 어떻게 저장되고 복원될까?](https://pluu.github.io/blog/android/2020/03/15/savedstate-flow/)
+  - [ViewModel의 B에서 D까지](https://pluu.github.io/blog/android/2020/05/04/viewmodel-b-to-d/)
 
 # Lazy List
 
