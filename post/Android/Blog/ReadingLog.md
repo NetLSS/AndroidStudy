@@ -227,6 +227,13 @@ with @ebayKorea
   - [SavedState 어떻게 저장되고 복원될까?](https://pluu.github.io/blog/android/2020/03/15/savedstate-flow/)
   - [ViewModel의 B에서 D까지](https://pluu.github.io/blog/android/2020/05/04/viewmodel-b-to-d/)
   - [[Android] LiveData setValue() vs postValue()](https://leveloper.tistory.com/179)
+- 2022-04-28
+  - [what-is-the-difference-between-uithread-and-mainthread-annotation-in-android](https://stackoverflow.com/questions/34287384/what-is-the-difference-between-uithread-and-mainthread-annotation-in-android)
+  - [안드로이드 웹뷰 CookieSyncManager 정확한 사용법](https://m.blog.naver.com/puresprout77/220842005470)
+  - [ProcessLifecycleOwner를 이용한 앱 B/F이벤트 처리](https://blog.kmshack.kr/ProcessLifecycleOwner%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%95%B1-Background,-Foreground-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B2%98%EB%A6%AC/)
+  - [Java - NoSuchMethodError 원인 및 해결 방법](https://codechacha.com/ko/java-nosuchmethoderror/)
+  - [](https://codetravel.tistory.com/9)
+  - [activity-embedding](https://developer.android.google.cn/guide/topics/large-screens/activity-embedding)
 
 # Lazy List
 
