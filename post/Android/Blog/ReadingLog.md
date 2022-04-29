@@ -234,6 +234,8 @@ with @ebayKorea
   - [Java - NoSuchMethodError 원인 및 해결 방법](https://codechacha.com/ko/java-nosuchmethoderror/)
   - [](https://codetravel.tistory.com/9)
   - [activity-embedding](https://developer.android.google.cn/guide/topics/large-screens/activity-embedding)
+- 2022-04-29
+  - [dialogfragment-dismiss-crashing-with-nullpointerexception](https://stackoverflow.com/questions/10526743/dialogfragment-dismiss-crashing-with-nullpointerexception)
 
 # Lazy List
 
