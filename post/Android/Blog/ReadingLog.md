@@ -236,6 +236,12 @@ with @ebayKorea
   - [activity-embedding](https://developer.android.google.cn/guide/topics/large-screens/activity-embedding)
 - 2022-04-29
   - [dialogfragment-dismiss-crashing-with-nullpointerexception](https://stackoverflow.com/questions/10526743/dialogfragment-dismiss-crashing-with-nullpointerexception)
+- 2022-05-02
+  - [[Android] 웹뷰를 풍부하게 활용할 수 있도록 해주는 WebViewClient](https://readystory.tistory.com/181)
+  - [Android Splash 화면을 구현하는 올바른 방법](https://lanace.github.io/articles/right-way-on-splash/)
+  - [[안드로이드] WebViewClient와 WebChromeClient](https://kimdabang.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-WebViewClient%EC%99%80-WebChromeClient)
+  - [Error on Android 6 and 7 using plugin from master](https://github.com/apache/cordova-plugin-inappbrowser/issues/386)
+  - [Fix beforeload for Android <= 7](https://github.com/apache/cordova-plugin-inappbrowser/pull/427/files)
 
 # Lazy List
 
