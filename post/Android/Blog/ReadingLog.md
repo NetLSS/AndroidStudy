@@ -251,6 +251,7 @@ with @ebayKorea
 - [놓치기 쉬운 안드로이드 UI 디테일 살펴보기](https://fornewid.medium.com/%EB%86%93%EC%B9%98%EA%B8%B0-%EC%89%AC%EC%9A%B4-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-ui-%EB%94%94%ED%85%8C%EC%9D%BC-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0-5e5f98c836af)
 - [Kotlin Flow 및 LiveData를 사용한 고급 코루틴 알아보기](https://developer.android.google.cn/codelabs/advanced-kotlin-coroutines?hl=ko#0)
 - [android TextView 속성](https://recipes4dev.tistory.com/94)
+- [kotlin-coroutine-flow](https://medium.com/hongbeomi-dev/kotlin-coroutine-flow-ac07cfdca42d)
 
 ## TODO
 
