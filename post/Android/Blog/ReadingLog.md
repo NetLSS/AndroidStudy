@@ -242,6 +242,7 @@ with @ebayKorea
   - [[안드로이드] WebViewClient와 WebChromeClient](https://kimdabang.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-WebViewClient%EC%99%80-WebChromeClient)
   - [Error on Android 6 and 7 using plugin from master](https://github.com/apache/cordova-plugin-inappbrowser/issues/386)
   - [Fix beforeload for Android <= 7](https://github.com/apache/cordova-plugin-inappbrowser/pull/427/files)
+  - [[날로먹는 Coroutine] #5 - Coroutine with Android Components](https://m.blog.naver.com/mym0404/221626544730)
 
 # Lazy List
 
