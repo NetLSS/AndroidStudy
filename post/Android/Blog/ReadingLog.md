@@ -245,6 +245,11 @@ with @ebayKorea
 - 2022-05-05 
   - [[날로먹는 Coroutine] #5 - Coroutine with Android Components](https://m.blog.naver.com/mym0404/221626544730)
   - [[Kotlin] Lambda with receiver](https://jaeyeong951.medium.com/kotlin-lambda-with-receiver-5c2cccd8265a)
+- 2022-05-09
+  - [Android 앱 링크 처리하기](https://developer.android.com/training/app-links?hl=ko&authuser=1)
+    - [](https://developer.android.com/training/app-links/deep-linking?hl=ko&authuser=1)
+    - [](https://developer.android.com/training/app-links/verify-site-associations?hl=ko&authuser=1)
+    - [](https://developer.android.com/training/app-links/instant-app-links?hl=ko&authuser=1)
 
 # Lazy List
 
