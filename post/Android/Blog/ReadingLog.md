@@ -250,6 +250,9 @@ with @ebayKorea
     - [](https://developer.android.com/training/app-links/deep-linking?hl=ko&authuser=1)
     - [](https://developer.android.com/training/app-links/verify-site-associations?hl=ko&authuser=1)
     - [](https://developer.android.com/training/app-links/instant-app-links?hl=ko&authuser=1)
+- 2022-05-11
+  - [github 키체인 keychain](https://kinggrmoon.tistory.com/55)
+    - 키체인 비밀번호 까먹었을 때 이 방법으로 확인 가능
 
 # Lazy List
 
