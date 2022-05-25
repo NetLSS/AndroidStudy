@@ -242,7 +242,40 @@ with @ebayKorea
   - [[안드로이드] WebViewClient와 WebChromeClient](https://kimdabang.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-WebViewClient%EC%99%80-WebChromeClient)
   - [Error on Android 6 and 7 using plugin from master](https://github.com/apache/cordova-plugin-inappbrowser/issues/386)
   - [Fix beforeload for Android <= 7](https://github.com/apache/cordova-plugin-inappbrowser/pull/427/files)
+- 2022-05-05 
   - [[날로먹는 Coroutine] #5 - Coroutine with Android Components](https://m.blog.naver.com/mym0404/221626544730)
+  - [[Kotlin] Lambda with receiver](https://jaeyeong951.medium.com/kotlin-lambda-with-receiver-5c2cccd8265a)
+- 2022-05-09
+  - [Android 앱 링크 처리하기](https://developer.android.com/training/app-links?hl=ko&authuser=1)
+    - [](https://developer.android.com/training/app-links/deep-linking?hl=ko&authuser=1)
+    - [](https://developer.android.com/training/app-links/verify-site-associations?hl=ko&authuser=1)
+    - [](https://developer.android.com/training/app-links/instant-app-links?hl=ko&authuser=1)
+- 2022-05-11
+  - [github 키체인 keychain](https://kinggrmoon.tistory.com/55)
+    - 키체인 비밀번호 까먹었을 때 이 방법으로 확인 가능
+- 2022-05-12
+  - [Firebase Crashlytics 비정상 종료 보고서 맞춤설정 ](https://firebase.google.com/docs/crashlytics/customize-crash-reports?hl=ko&platform=android)
+  - [How to uselogCustommethodincom.crashlytics.android.answers.Answers](https://www.tabnine.com/code/java/methods/com.crashlytics.android.answers.Answers/logCustom)
+  - [Mac : Mac OS에서 환경변수 조회/설정하기 (Checking & Setting environment variable in Mac OS. vim editor. vi editor)](https://cosmosproject.tistory.com/269)
+  - [맥 .bash_profile 없을 때 해결 방법](https://developer-sj.tistory.com/32)
+  - [ios 스마일페이](https://apps.apple.com/kr/app/%EC%8A%A4%EB%A7%88%EC%9D%BC%ED%8E%98%EC%9D%B4-smilepay-%EB%98%91%EB%98%91%ED%95%9C-%EC%87%BC%ED%95%91%EC%8A%B5%EA%B4%80/id1411684977)
+  - [Cannot create a proxy class for abstract class 'GoogleServicesTask'. with 'com.google.gms:google-services:4.3.4'](https://stackoverflow.com/questions/64201624/cannot-create-a-proxy-class-for-abstract-class-googleservicestask-with-com-g)
+  - [cvc-complex-type.2.4.a: Invalid content found starting with element 'base-extension'. One of '{codename, tag}' is required](https://stackoverflow.com/questions/72199662/cvc-complex-type-2-4-a-invalid-content-found-starting-with-element-base-extens/72210417#72210417)
+  - [android - speed - 오류:com.google.gms:google-services:4.2.0을 찾을 수 없습니다.](https://code-examples.net/ko/q/3337f45)
+  - [Invalid content was found starting with element 'base-extension' #136 ](https://github.com/googlesamples/android-testdpc/issues/136)
+  - [[Android] Android Studio org.gradle.api.ProjectConfigurationException: A problem occurred configuring project ':app'.](https://gigas-blog.tistory.com/125)
+  - [Gradle compile error "No Signature of Method"](https://stackoverflow.com/questions/19279964/gradle-compile-error-no-signature-of-method)
+  - [안드로이드 Fabric Crashlytics 이용하기(버그 리포트 기록 플러그인) ](https://kylblog.tistory.com/16)
+  - [애플 앱스토어 번들아이디 찾기](http://www.bluebee.co.kr/?p=457)
+  - [[Kotlin] kotlin-stdlib, kotlin-stdlib-jdk7, kotlin-stdlib-jdk8 차이점](https://hanburn.tistory.com/178)
+  - [Firebase Crashlytics Sdk 적용(deprecated Fabric) ](https://kikimihye.tistory.com/107)
+  - [cvc-complex-type.2.4.a: Invalid content was found starting with element 'base-extension'. One of '{layoutlib}' is expected](https://stackoverflow.com/questions/71658373/cvc-complex-type-2-4-a-invalid-content-was-found-starting-with-element-base-ex)
+  - [](https://ddolcat.tistory.com/466)
+  - [Google 애널리틱스 시작하기 ](https://firebase.google.com/docs/analytics/get-started?platform=android&authuser=0&hl=ko)
+  - [Android Gradle 플러그인 출시 노트 ](https://developer.android.com/studio/releases/gradle-plugin?authuser=1)
+  - [Firebase Crashlytics SDK로 업그레이드 ](https://firebase.google.com/docs/crashlytics/upgrade-sdk?hl=ko&platform=android)
+  - [Get started with Firebase Crashlytics ](https://firebase.google.com/docs/crashlytics/get-started?platform=android#java)
+  - [Crashlytics 구현 테스트 ](https://firebase.google.com/docs/crashlytics/test-implementation?platform=android&authuser=0&hl=ko)
 
 # Lazy List
 
