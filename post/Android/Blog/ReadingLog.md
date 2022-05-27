@@ -276,6 +276,13 @@ with @ebayKorea
   - [Firebase Crashlytics SDK로 업그레이드 ](https://firebase.google.com/docs/crashlytics/upgrade-sdk?hl=ko&platform=android)
   - [Get started with Firebase Crashlytics ](https://firebase.google.com/docs/crashlytics/get-started?platform=android#java)
   - [Crashlytics 구현 테스트 ](https://firebase.google.com/docs/crashlytics/test-implementation?platform=android&authuser=0&hl=ko)
+- 2022-05-27
+  - [lateinit var is initialized](https://dwenn.tistory.com/60)
+  - [[Git] fatal: could not read Username for 'https://github.com': Device not configured](https://m.blog.naver.com/lge920904/202470531)
+  - [[안드로이드] You need to use a Theme.AppCompat theme (or descendant) with this activity](https://dreamaz.tistory.com/63)
+  - [You need to use a Theme.AppCompat theme (or descendant) with this activity](https://stackoverflow.com/questions/21814825/you-need-to-use-a-theme-appcompat-theme-or-descendant-with-this-activity)
+    - `In style <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"> this solved my issue. :)`
+  - [[안드로이드] DSL element 'android.dataBinding.enabled' is obsolete and has been replaced with 'android.buildFeatures.dataBinding'.](https://cishome.tistory.com/168)
 
 # Lazy List
 
