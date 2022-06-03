@@ -283,6 +283,10 @@ with @ebayKorea
   - [You need to use a Theme.AppCompat theme (or descendant) with this activity](https://stackoverflow.com/questions/21814825/you-need-to-use-a-theme-appcompat-theme-or-descendant-with-this-activity)
     - `In style <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"> this solved my issue. :)`
   - [[안드로이드] DSL element 'android.dataBinding.enabled' is obsolete and has been replaced with 'android.buildFeatures.dataBinding'.](https://cishome.tistory.com/168)
+- 2022-06-03
+  - [Kotlin 1.5에 추가된 value class에 대해 알아보자](https://velog.io/@dhwlddjgmanf/Kotlin-1.5%EC%97%90-%EC%B6%94%EA%B0%80%EB%90%9C-value-class%EC%97%90-%EB%8C%80%ED%95%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90)
+  - [[Kotlin] What'a new in Kotlin 1.5.0 #2 - Sealed interface](https://velog.io/@cchloe2311/Kotlin-Whata-new-in-Kotlin-1.5.0-2-Sealed-interface)
+  - [Sealed Class와 Sealed Interface](https://medium.com/hongbeomi-dev/sealed-class%EC%99%80-sealed-interface-db1fff634860)
 
 # Lazy List
 
