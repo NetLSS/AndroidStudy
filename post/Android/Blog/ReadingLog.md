@@ -289,6 +289,10 @@ with @ebayKorea
   - [Sealed Class와 Sealed Interface](https://medium.com/hongbeomi-dev/sealed-class%EC%99%80-sealed-interface-db1fff634860)
 - 2022-06-23
   - [안드로이드 VectorDrawable 알아보기](https://www.charlezz.com/?p=1110)
+- 2022-06-24
+  - [duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu](https://stackoverflow.com/questions/56639529/duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu)
+  - [unrecognized-attribute-name-module-class-com-sun-tools-javac-util-sharednametab](https://stackoverflow.com/questions/68344424/unrecognized-attribute-name-module-class-com-sun-tools-javac-util-sharednametab)
+  - [java 11 적용 참고](http://github.ebaykorea.com/org-ebaykorea/IAC.Android.AuctionMobile/pull/463/files)
 # Lazy List
 
 
