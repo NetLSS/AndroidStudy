@@ -293,6 +293,8 @@ with @ebayKorea
   - [duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu](https://stackoverflow.com/questions/56639529/duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu)
   - [unrecognized-attribute-name-module-class-com-sun-tools-javac-util-sharednametab](https://stackoverflow.com/questions/68344424/unrecognized-attribute-name-module-class-com-sun-tools-javac-util-sharednametab)
   - [java 11 적용 참고](http://github.ebaykorea.com/org-ebaykorea/IAC.Android.AuctionMobile/pull/463/files)
+- 2022-06-26
+  - [비즈니스 로직 이란?](https://mommoo.tistory.com/67)
 # Lazy List
 
 
