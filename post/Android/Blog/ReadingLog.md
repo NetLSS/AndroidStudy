@@ -293,6 +293,11 @@ with @ebayKorea
   - [duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu](https://stackoverflow.com/questions/56639529/duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu)
   - [unrecognized-attribute-name-module-class-com-sun-tools-javac-util-sharednametab](https://stackoverflow.com/questions/68344424/unrecognized-attribute-name-module-class-com-sun-tools-javac-util-sharednametab)
   - [java 11 적용 참고](http://github.ebaykorea.com/org-ebaykorea/IAC.Android.AuctionMobile/pull/463/files)
+- 2022-08-26
+  - [[Android] gradle android 빌드 구성](https://liveupdate.tistory.com/397)
+  - [이미지 비율 변환 계산기 사이트](https://andrew.hedges.name/experiments/aspect_ratio/)
+- 2022-09-05
+  - [android-get-color-as-string-value](https://stackoverflow.com/questions/5026995/android-get-color-as-string-value)
 # Lazy List
 
 
