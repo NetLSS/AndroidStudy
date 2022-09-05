@@ -298,6 +298,8 @@ with @ebayKorea
   - [이미지 비율 변환 계산기 사이트](https://andrew.hedges.name/experiments/aspect_ratio/)
 - 2022-09-05
   - [android-get-color-as-string-value](https://stackoverflow.com/questions/5026995/android-get-color-as-string-value)
+- 2022-06-26
+  - [비즈니스 로직 이란?](https://mommoo.tistory.com/67)
 # Lazy List
 
 
