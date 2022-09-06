@@ -287,7 +287,19 @@ with @ebayKorea
   - [Kotlin 1.5에 추가된 value class에 대해 알아보자](https://velog.io/@dhwlddjgmanf/Kotlin-1.5%EC%97%90-%EC%B6%94%EA%B0%80%EB%90%9C-value-class%EC%97%90-%EB%8C%80%ED%95%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90)
   - [[Kotlin] What'a new in Kotlin 1.5.0 #2 - Sealed interface](https://velog.io/@cchloe2311/Kotlin-Whata-new-in-Kotlin-1.5.0-2-Sealed-interface)
   - [Sealed Class와 Sealed Interface](https://medium.com/hongbeomi-dev/sealed-class%EC%99%80-sealed-interface-db1fff634860)
-
+- 2022-06-23
+  - [안드로이드 VectorDrawable 알아보기](https://www.charlezz.com/?p=1110)
+- 2022-06-24
+  - [duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu](https://stackoverflow.com/questions/56639529/duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu)
+  - [unrecognized-attribute-name-module-class-com-sun-tools-javac-util-sharednametab](https://stackoverflow.com/questions/68344424/unrecognized-attribute-name-module-class-com-sun-tools-javac-util-sharednametab)
+  - [java 11 적용 참고](http://github.ebaykorea.com/org-ebaykorea/IAC.Android.AuctionMobile/pull/463/files)
+- 2022-08-26
+  - [[Android] gradle android 빌드 구성](https://liveupdate.tistory.com/397)
+  - [이미지 비율 변환 계산기 사이트](https://andrew.hedges.name/experiments/aspect_ratio/)
+- 2022-09-05
+  - [android-get-color-as-string-value](https://stackoverflow.com/questions/5026995/android-get-color-as-string-value)
+- 2022-06-26
+  - [비즈니스 로직 이란?](https://mommoo.tistory.com/67)
 # Lazy List
 
 
