@@ -16,6 +16,7 @@
 - 안드로이드 스튜디오 Arctic Fox & 프로그래밍
 - 이펙티브 코틀린
 - Kotlin in Depth
+- Head first android
 
 ## 수강중인 강의들
 
