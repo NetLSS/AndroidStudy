@@ -300,6 +300,10 @@ with @ebayKorea
   - [android-get-color-as-string-value](https://stackoverflow.com/questions/5026995/android-get-color-as-string-value)
 - 2022-06-26
   - [비즈니스 로직 이란?](https://mommoo.tistory.com/67)
+- 2023-02-06
+  - [동적 링크에 대한 사용자 정의 도메인 설정](https://firebase.google.com/docs/dynamic-links/custom-domains?hl=ko)
+  - [Android 앱 링크 인증하기](https://developer.android.com/training/app-links/verify-android-applinks?hl=ko)
+  - [Kotlin-자바 상호운용성 가이드 : 람다 인수 Unit.Instance](https://developer.android.com/kotlin/interop?hl=ko#lambda_arguments)
 # Lazy List
 
 
